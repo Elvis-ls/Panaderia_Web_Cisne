@@ -1,0 +1,239 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f4ee;
+    margin: 0;
+    padding: 0;
+    color: #5a3e2b;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #8d583d;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo img {
+    max-height: 60px;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+nav {
+    background: #c79b7b;
+    display: flex;
+    justify-content: center;  /* Centra los elementos horizontalmente */
+    padding: 10px 0;
+    width: 100%;  /* Asegura que el nav ocupe el 100% del ancho */
+    box-sizing: border-box;  /* Asegura que el padding no afecte el ancho */
+}
+
+.nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;  /* Límite de ancho máximo */
+    width: 100%;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a.active {
+    color: #fff;
+    font-weight: bold;
+    background-color: #8d583d; /* Fondo color de selección */
+    border-radius: 5px; /* Bordes redondeados para el botón seleccionado */
+    padding: 5px 15px; /* Añadir algo de padding para que se vea más grande */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Efecto de sombra para resaltar */
+}
+
+nav a:hover {
+    color: #f8f4ee;
+}
+
+.main-content {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+}
+
+.main-content h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.2rem;
+    color: #8d583d;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.menu-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-item h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: #5a3e2b;
+}
+
+
+
+.menu-item a:hover {
+    background: #8d583d;
+}
+
+footer {
+    background: #8d583d;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    position: relative; /* Cambiado a relativo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 20px; /* Añade un margen para separar del contenido */
+}
+
+footer .social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+header, nav {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Contenedor de las tarjetas */
+.menu-item {
+    perspective: 1000px;
+    width: 100%;
+    height: 320px; /* Altura total fija para la tarjeta */
+    display: flex;
+    flex-direction: column; /* Organiza los elementos verticalmente */
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/* Tarjeta 3D */
+.menu-card {
+    width: 100%;
+    height: 250px; /* Área fija para la tarjeta giratoria */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.menu-item:hover .menu-card {
+    transform: rotateY(180deg);
+}
+
+.menu-card-front,
+.menu-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Parte frontal de la tarjeta */
+.menu-card-front {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Imagen en la parte superior con tamaño uniforme */
+.menu-card-front img {
+    width: 100%;
+    height: 190px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Ajusta la imagen al contenedor manteniendo la proporción */
+    border-bottom: 1px solid #ddd; /* Línea de separación para claridad */
+}
+
+/* Parte trasera */
+.menu-card-back {
+    background: #c79b7b;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(180deg);
+}
+
+.menu-card-back p {
+    margin: 0;
+    padding: 15px;
+    font-size: 1rem;
+}
+
+/* Botón "Ver más" */
+.menu-item a {
+    margin-top: auto;
+    padding: 10px 15px;
+    background: #c79b7b;
+    color: #fff;
+    text-decoration: none; /* Asegura que el enlace no tenga subrayado */
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 0 0 10px 10px; /* Esquinas redondeadas inferiores */
+    transition: background 0.3s;
+    display: block;
+    cursor: pointer; /* Muestra el puntero de mano, indicativo de un botón */
+}
+
+.menu-item a:hover {
+    background: #8d583d; /* Efecto hover para cambiar el color de fondo */
+    text-decoration: underline; /* Opcional: agrega subrayado en hover si quieres el efecto de enlace */
+}
+
+.menu-item a:focus {
+    outline: none; /* Elimina el borde azul en algunos navegadores al hacer foco */
+}
+
