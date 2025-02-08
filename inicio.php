@@ -13,8 +13,11 @@ if ($con->connect_error) {
 // Instanciar el controlador
 $productoController = new ProductoController($con);
 
-// Manejar la solicitud
-$productoController->handleRequest();
+// Manejar la solicitud solo si hay una acción específica
+if (isset($_GET['action'])) {
+    $productoController->handleRequest();
+    exit; // Salir para evitar cargar la vista de inicio
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,7 +55,7 @@ $productoController->handleRequest();
                         <p>Disfruta de una amplia variedad de panes frescos y recién horneados, ideales para cualquier momento del día. Desde panes clásicos hasta opciones especiales, perfectas para acompañar tu desayuno o merienda.</p>
                     </div>
                 </div>
-                <a href="panaderia.html">Ver más</a>
+                <a href="inicio.php?action=panaderia">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -65,7 +68,7 @@ $productoController->handleRequest();
                         <p>Deléitate con nuestras deliciosas creaciones de pastelería, elaboradas con los mejores ingredientes. Tienes una variedad de tortas, galletas y dulces perfectos para cualquier celebración o simplemente para consentirte.</p>
                     </div>
                 </div>
-                <a href="pasteleria.html">Ver más</a>
+                <a href="inicio.php?action=pasteleria">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -78,7 +81,7 @@ $productoController->handleRequest();
                         <p>Sumérgete en el sabor de nuestras galletas caseras, preparadas con amor y los mejores ingredientes. Desde las clásicas hasta opciones innovadoras, cada bocado es una explosión de sabor.</p>
                     </div>
                 </div>
-                <a href="galletaria.html">Ver más</a>
+                <a href="inicio.php?action=galleteria">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -91,7 +94,7 @@ $productoController->handleRequest();
                         <p>Nuestros productos lácteos son de la más alta calidad, ideales para complementar tu dieta. Encuentra leches, quesos y yogures frescos, perfectos para acompañar tus desayunos o preparar recetas deliciosas.</p>
                     </div>
                 </div>
-                <a href="lacteos.html">Ver más</a>
+                <a href="inicio.php?action=lacteos">Ver más</a>
             </div>
         </div>
     </main>   

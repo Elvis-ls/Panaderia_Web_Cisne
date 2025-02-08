@@ -35,8 +35,15 @@ class ProductoController {
                     break;
             }
         } else {
-   
+            $this->showInicio();
         }
+    }
+
+    /**
+     * Muestra la vista de inicio.
+     */
+    private function showInicio() {
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/inicio.php');
     }
 
     /**
