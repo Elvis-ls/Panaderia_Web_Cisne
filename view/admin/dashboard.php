@@ -1,26 +1,26 @@
-<?php $pagina = 'inicio'; ?>
+<?php $pagina = 'inicio'; 
+session_start();?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panadería - Página Principal</title>
+    <title>Panadería - Página Usuario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="public/js/animacion_.js"></script>
-    <link rel="stylesheet" href="public/css/style.css">
-    <script src="public/js/animacion_.js"></script>
+    <script src="/Panaderia_Web/public/js/animacion_menu.js"></script>
+
 </head>
 <body>
     <!-- Encabezado -->
-    <?php include ('view/partials/header.php'); ?>
+    <?php include ('../partials/header.php'); ?>
     
     <!-- Menú de Navegación -->
-    <?php include ('view/partials/nav.php'); ?>
+    <?php include ('../partials/nav.php'); ?>
     
     <main class="main-content">
         <h1>Bienvenidos a nuestra Panadería</h1>
@@ -29,7 +29,7 @@
             <div class="menu-item">
                 <div class="menu-card">
                     <div class="menu-card-front">
-                        <img src="public/images/panaderia.jpg" alt="Panadería">
+                        <img src="../../public/images/panaderia.jpg" alt="Panadería">
                         <h3>Panadería</h3>
                     </div>
                     <div class="menu-card-back">
@@ -42,7 +42,7 @@
             <div class="menu-item">
                 <div class="menu-card">
                     <div class="menu-card-front">
-                        <img src="public/images/pasteleria.jpg" alt="Pastelería">
+                        <img src="../../public/images/pasteleria.jpg" alt="Pastelería">
                         <h3>Pastelería</h3>
                     </div>
                     <div class="menu-card-back">
@@ -55,7 +55,7 @@
             <div class="menu-item">
                 <div class="menu-card">
                     <div class="menu-card-front">
-                        <img src="public/images/galleteria.jpg" alt="Galletería">
+                        <img src="../../public/images/galleteria.jpg" alt="Galletería">
                         <h3>Galletería</h3>
                     </div>
                     <div class="menu-card-back">
@@ -68,7 +68,7 @@
             <div class="menu-item">
                 <div class="menu-card">
                     <div class="menu-card-front">
-                        <img src="public/images/lacteos.jpg" alt="Lácteos">
+                        <img src="../../public/images/lacteos.jpg" alt="Lácteos">
                         <h3>Lácteos</h3>
                     </div>
                     <div class="menu-card-back">
@@ -80,12 +80,9 @@
         </div>
     </main>   
     <!-- Pie de página -->
-    <?php include ('view/partials/footer.php'); ?>
+    <?php include ('../partials/footer.php'); ?>
         <!-- Incluir los scripts de Bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="public/js/animacion_.js"></script>
-
 </body>
 </html>

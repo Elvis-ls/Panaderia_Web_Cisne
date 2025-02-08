@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <!-- Mostrar el mensaje de éxito o error -->
-                <div id="mensaje"></div>
+                <div id="mensajeRegistro" class="alert" style="display: none;"></div>
                 <!-- Formulario de Registro -->
                 <form id="formRegistro">
                     <div class="mb-3">
@@ -43,21 +43,35 @@ $(document).ready(function() {
     $('#formRegistro').on('submit', function(e) {
         e.preventDefault(); // Evitar que el formulario se envíe de la manera tradicional
 
+        var formData = new FormData(this); // Crear una instancia de FormData y pasarle el formulario
+
         $.ajax({
             url: '/panaderia_web/controller/RegistroController.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: formData,
+            processData: false, // Evitar que jQuery procese los datos
+            contentType: false, // Evitar que jQuery establezca el tipo de contenido
             success: function(response) {
-                if (response.success) {
-                    $('#mensaje').html('<div class="alert alert-success">' + response.message + '</div>');
-                    // Limpiar el formulario si el registro fue exitoso
-                    $('#formRegistro')[0].reset();
-                } else {
-                    $('#mensaje').html('<div class="alert alert-danger">' + response.message + '</div>');
+                console.log(response); // Verifica la respuesta en la consola
+                try {
+                    var data = JSON.parse(response); // Intenta parsear la respuesta como JSON
+                    if (data.success) {
+                        $('#mensajeRegistro').removeClass('alert-danger').addClass('alert-success').text(data.message).show();
+                        $('#formRegistro')[0].reset(); // Limpiar el formulario
+                    } else {
+                        $('#mensajeRegistro').removeClass('alert-success').addClass('alert-danger').text(data.message).show();
+                        $('#formRegistro')[0].reset(); // Limpiar el formulario
+                    }
+                } catch (e) {
+                    console.error("Error al parsear la respuesta:", e); // Muestra errores de parsing
+                    $('#mensajeRegistro').removeClass('alert-success').addClass('alert-danger').text('Error en la respuesta del servidor.').show();
+                    $('#formRegistro')[0].reset(); // Limpiar el formulario
                 }
             },
-            error: function() {
-                $('#mensaje').html('<div class="alert alert-danger">Error al procesar la solicitud.</div>');
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", status, error); // Muestra errores de la solicitud
+                $('#mensajeRegistro').removeClass('alert-success').addClass('alert-danger').text('Error al procesar la solicitud.').show();
+                $('#formRegistro')[0].reset(); // Limpiar el formulario
             }
         });
     });

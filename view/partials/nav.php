@@ -1,18 +1,18 @@
 <nav>
     <div class="nav-container">
-        <a href="inicio.php" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
+        <a href="?action=inicio" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a href="panaderia.php" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
+        <a href="?action=panaderia" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
             <i class="fas fa-bread-slice"></i> Panadería
         </a>
-        <a href="pasteleria.php" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
+        <a href="?action=pasteleria" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
             <i class="fas fa-cake"></i> Pastelería
         </a>
-        <a href="galleteria.php" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
+        <a href="?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
             <i class="fas fa-cookie"></i> Galletería
         </a>
-        <a href="cafeteria.php" class="<?php echo ($pagina == 'cafeteria') ? 'active' : ''; ?>">
+        <a href="?action=lacteos" class="<?php echo ($pagina == 'cafeteria') ? 'active' : ''; ?>">
             <i class="fas fa-coffee"></i> Lácteos
         </a>
         <a href="ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">
@@ -27,11 +27,21 @@
         <a href="pedidos.php" class="<?php echo ($pagina == 'pedidos') ? 'active' : ''; ?>">
             <i class="fas fa-box"></i> Mis pedidos
         </a>
+        <a href="notificaciones.php" class="<?php echo ($pagina == 'notificaciones') ? 'active' : ''; ?>">
+            <i class="fas fa-bell"></i> Notificaciones
+        </a>
 
         <?php if ($_SESSION['rol_id'] == 1): ?>  <!-- Administrador -->
-            <a href="../view/admin/dashboard.php" class="<?php echo ($pagina == 'admin') ? 'active' : ''; ?>">
-                <i class="fas fa-tachometer-alt"></i> Admin
-            </a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle <?php echo ($pagina == 'reportes') ? 'active' : ''; ?>" id="reportesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
+                    <li><a class="dropdown-item" href="../view/admin/reportes_notificaciones.php">Reportes de Notificaciones</a></li>
+                    <li><a class="dropdown-item" href="../view/admin/reportes_productos.php">Reportes de Productos</a></li>
+                    <li><a class="dropdown-item" href="../view/admin/reportes_pedidos.php">Reportes de Pedidos</a></li>
+                </ul>
+            </div>
         <?php endif; ?>
 
         <!-- Cerrar sesión -->

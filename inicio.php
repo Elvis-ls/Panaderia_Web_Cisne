@@ -1,4 +1,21 @@
 <?php $pagina = 'inicio'; ?>
+<?php
+require_once 'config/conexion.php';
+require_once 'controller/ProductoController.php';
+
+// Crear la conexión a la base de datos
+$con = new mysqli($host, $usuario, $contraseña, $base_de_datos);
+
+if ($con->connect_error) {
+    die("Conexión fallida: " . $con->connect_error);
+}
+
+// Instanciar el controlador
+$productoController = new ProductoController($con);
+
+// Manejar la solicitud
+$productoController->handleRequest();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +30,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="public/css/style.css">
     <script src="public/js/animacion_menu.js"></script>
-    <script src="/Panaderia_Web/public/js/registro.js"></script>
 </head>
 <body>
     <!-- Encabezado -->

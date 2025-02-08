@@ -1,14 +1,6 @@
 <?php
-session_start();
+session_start(); // Asegurarse de que la sesión esté iniciada para verificar el estado del usuario
 $pagina = 'pedidos';
-
-// Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
-// Aquí deberías obtener los pedidos del usuario desde la base de datos
 ?>
 
 <!DOCTYPE html>
@@ -21,19 +13,23 @@ if (!isset($_SESSION['usuario_id'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include ('../partials/header.php'); ?>
-    <?php include ('../partials/nav.php'); ?>
+    <?php include '../partials/header.php'; ?>
+    <?php include '../partials/nav.php'; ?>
 
     <main class="main-content">
         <h1>Mis Pedidos</h1>
         
         <div class="pedidos-lista">
-            <!-- Aquí debería mostrar los pedidos del usuario desde la base de datos -->
-            <div class="pedido-item">
-                <p>Pedido #1234 - Estado: Confirmado</p>
-                <a href="detalle_pedido.php?id=1234">Ver detalles</a>
-            </div>
-            <!-- Fin de la lista de pedidos -->
+            <?php if (isset($pedidos) && !empty($pedidos)): ?>
+                <?php foreach ($pedidos as $pedido): ?>
+                    <div class="pedido-item">
+                        <p>Pedido #<?php echo $pedido['id']; ?> - Fecha: <?php echo $pedido['fecha']; ?> - Total: $<?php echo number_format($pedido['total'], 2); ?> - Estado: <?php echo $pedido['estado']; ?></p>
+                        <a href="detalle_pedido.php?id=<?php echo $pedido['id']; ?>" class="btn btn-info">Ver detalles</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No tienes pedidos realizados.</p>
+            <?php endif; ?>
         </div>
         
         <div class="nuevo-pedido">
@@ -42,7 +38,8 @@ if (!isset($_SESSION['usuario_id'])) {
         </div>
     </main>
     
-    <?php include ('../partials/footer.php'); ?>
+    <?php include '../partials/footer.php'; ?>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
