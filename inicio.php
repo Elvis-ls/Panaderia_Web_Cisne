@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <?php $pagina = 'inicio'; ?>
 <?php
 require_once 'config/conexion.php';
@@ -26,12 +27,11 @@ if (isset($_GET['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panadería - Página Principal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="Panaderia_Web/public/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="public/css/style.css">
     <script src="public/js/animacion_menu.js"></script>
 </head>
 <body>
@@ -100,10 +100,5 @@ if (isset($_GET['action'])) {
     </main>   
     <!-- Pie de página -->
     <?php include ('view/partials/footer.php'); ?>
-        <!-- Incluir los scripts de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="public/js/animacion_menu.js"></script>
-
 </body>
 </html>

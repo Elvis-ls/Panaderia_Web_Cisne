@@ -12,7 +12,7 @@
         <a href="?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
             <i class="fas fa-cookie"></i> Galletería
         </a>
-        <a href="?action=lacteos" class="<?php echo ($pagina == 'cafeteria') ? 'active' : ''; ?>">
+        <a href="?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
             <i class="fas fa-coffee"></i> Lácteos
         </a>
         <a href="ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">

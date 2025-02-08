@@ -1,5 +1,9 @@
+<?php $pagina = 'panaderia'; ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav.php'); ?>
+
+<!-- Incluir el nuevo archivo CSS -->
+<link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 
 <main class="main-content">
     <h1>Panadería</h1>
@@ -7,6 +11,8 @@
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $producto): ?>
                 <div class="producto">
+                    <?php $rutaImagen = '/Panaderia_Web/public/images/' . $producto['imagen']; ?>
+                    <img src="<?php echo $rutaImagen; ?>" alt="<?php echo $producto['nombre']; ?>">
                     <h2><?php echo $producto['nombre']; ?></h2>
                     <p><?php echo $producto['descripcion']; ?></p>
                     <p>Precio: <?php echo $producto['precio']; ?></p>

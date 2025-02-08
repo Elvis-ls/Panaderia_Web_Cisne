@@ -30,6 +30,9 @@ class ProductoController {
                 case 'lacteos':
                     $this->showLacteos();
                     break;
+                case 'inicio':
+                    header("Location: /Panaderia_Web/inicio.php");
+                    exit;
                 default:
                     echo "Página no encontrada";
                     break;
@@ -38,7 +41,6 @@ class ProductoController {
             $this->showInicio();
         }
     }
-
     /**
      * Muestra la vista de inicio.
      */
