@@ -1,4 +1,4 @@
-<?php $pagina = 'inicio'; 
+<?php $pagina = 'inicio_user'; 
 session_start();?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,7 +36,7 @@ session_start();?>
                         <p>Disfruta de una amplia variedad de panes frescos y recién horneados, ideales para cualquier momento del día. Desde panes clásicos hasta opciones especiales, perfectas para acompañar tu desayuno o merienda.</p>
                     </div>
                 </div>
-                <a href="panaderia.html">Ver más</a>
+                <a href="panaderia_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -49,7 +49,7 @@ session_start();?>
                         <p>Deléitate con nuestras deliciosas creaciones de pastelería, elaboradas con los mejores ingredientes. Tienes una variedad de tortas, galletas y dulces perfectos para cualquier celebración o simplemente para consentirte.</p>
                     </div>
                 </div>
-                <a href="pasteleria.html">Ver más</a>
+                <a href="pasteleria_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">

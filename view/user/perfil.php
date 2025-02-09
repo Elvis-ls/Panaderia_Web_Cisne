@@ -54,7 +54,7 @@ if (isset($_SESSION['mensaje'])) {
 </head>
 <body>
     <?php include ('../partials/header.php'); ?>
-    <?php include ('../partials/nav.php'); ?>
+    <?php include ('../partials/nav_user.php'); ?>
 
     <main class="main-content">
         <h1>Mi Perfil</h1>
