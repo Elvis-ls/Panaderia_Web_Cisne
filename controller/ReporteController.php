@@ -28,7 +28,7 @@ class PDF extends FPDF {
     }
 
     // Contenido del pedido
-    function PedidoContent($pedido) {
+    function PedidoContent($pedido, $detalles) {
         // Fuente
         $this->SetFont('Arial','',12);
         
@@ -43,7 +43,22 @@ class PDF extends FPDF {
         $this->SetFont('Arial','B',12);
         $this->Cell(0,10,'Detalles del Pedido',0,1);
         $this->SetFont('Arial','',12);
-        $this->MultiCell(0,10,'Aquí puedes agregar más detalles del pedido, como los productos comprados, cantidades, precios unitarios, etc.',0,1);
+        
+        // Encabezados de la tabla
+        $this->Cell(40,10,'Producto',1);
+        $this->Cell(30,10,'Cantidad',1);
+        $this->Cell(40,10,'Precio Unitario',1);
+        $this->Cell(40,10,'Subtotal',1);
+        $this->Ln();
+
+        // Datos de la tabla
+        foreach ($detalles as $detalle) {
+            $this->Cell(40,10,$detalle['nombre'],1);
+            $this->Cell(30,10,$detalle['cantidad'],1);
+            $this->Cell(40,10,'$' . number_format($detalle['precio_unitario'], 2),1);
+            $this->Cell(40,10,'$' . number_format($detalle['cantidad'] * $detalle['precio_unitario'], 2),1);
+            $this->Ln();
+        }
         $this->Ln(10);
 
         // Información adicional
@@ -61,6 +76,7 @@ if (isset($_GET['pedido_id'])) {
     // Crear una instancia del modelo de pedidos
     $pedidoModel = new PedidoModel();
     $pedido = $pedidoModel->obtenerPedidoPorId($pedido_id);
+    $detalles = $pedidoModel->obtenerDetallesPedido($pedido_id);
 
     if ($pedido) {
         // Crear el PDF
@@ -70,7 +86,7 @@ if (isset($_GET['pedido_id'])) {
         $pdf->SetFont('Arial','B',12);
 
         // Agregar contenido al PDF
-        $pdf->PedidoContent($pedido);
+        $pdf->PedidoContent($pedido, $detalles);
 
         // Salida del PDF
         $pdf->Output();

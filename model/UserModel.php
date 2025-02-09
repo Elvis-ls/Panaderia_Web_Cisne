@@ -10,7 +10,7 @@ class UsuarioModel {
     }
 
     public function obtenerUsuario($usuario_id) {
-        $sql = "SELECT nombre, correo, telefono, direccion FROM usuarios WHERE id = ?";
+        $sql = "SELECT * FROM usuarios WHERE id = ?";
         $stmt = mysqli_prepare($this->con, $sql);
         mysqli_stmt_bind_param($stmt, "i", $usuario_id);
         mysqli_stmt_execute($stmt);
@@ -20,9 +20,12 @@ class UsuarioModel {
         return $usuario;
     }
 
-    public function actualizarPerfil($usuario_id, $nombre, $correo, $telefono, $direccion) {
+    public function actualizarUsuario($usuario_id, $nombre, $correo, $telefono, $direccion) {
         $sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, direccion = ? WHERE id = ?";
         $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
         mysqli_stmt_bind_param($stmt, "ssssi", $nombre, $correo, $telefono, $direccion, $usuario_id);
         $resultado = mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);

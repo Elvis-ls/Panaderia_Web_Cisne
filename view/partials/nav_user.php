@@ -1,12 +1,12 @@
 <nav>
     <div class="nav-container">
-        <a href="/Panaderia_Web/inicio.php?action=inicio" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
+        <a href="inicio.php" class="<?php echo ($pagina == 'inicio_user') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=panaderia" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
+        <a href="panaderia_user.php" class="<?php echo ($pagina == 'panaderia_user') ? 'active' : ''; ?>">
             <i class="fas fa-bread-slice"></i> Panadería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=pasteleria" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
+        <a href="pasteleria_user.php" class="<?php echo ($pagina == 'pasteleria_user') ? 'active' : ''; ?>">
             <i class="fas fa-cake"></i> Pastelería
         </a>
         <a href="/Panaderia_Web/inicio.php?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
