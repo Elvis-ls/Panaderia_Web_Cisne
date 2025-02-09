@@ -22,4 +22,5 @@
             <p>No hay productos disponibles en esta categoría.</p>
         <?php endif; ?>
     </div>
-</
+</main>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
