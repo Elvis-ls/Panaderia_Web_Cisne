@@ -1,5 +1,5 @@
 <?php
-$pagina = 'pasteleria_user';
+$pagina = 'galleteria_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -11,7 +11,7 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 $productoModel = new ProductoModel($con);
 
 // Obtener los productos de la categoría "Panadería"
-$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Panadería"
+$productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría "Panadería"
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -21,7 +21,7 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 
 <main class="main-content">
-    <h1>Pastelería</h1>
+    <h1>Galletería</h1>
     <div class="productos">
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $producto): ?>
