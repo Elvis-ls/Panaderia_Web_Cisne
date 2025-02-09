@@ -1,13 +1,12 @@
 <?php
-// controller/PedidoController.php
 session_start();
-require_once '../model/PedidoModel.php';
+require_once __DIR__ . '/../model/PedidoModel.php';
 
 class PedidoController {
     private $pedidoModel;
 
-    public function __construct() {
-        $this->pedidoModel = new PedidoModel();
+    public function __construct(PedidoModel $pedidoModel) {
+        $this->pedidoModel = $pedidoModel;
     }
 
     public function mostrarPedidos() {
@@ -22,11 +21,12 @@ class PedidoController {
         $pedidos = $this->pedidoModel->obtenerPedidos($usuario_id);
 
         // Incluir la vista
-        include '../view/pedidos.php';
+        include '../view/user/pedidos.php';
     }
 }
 
 // Crear una instancia del controlador y llamar al método para mostrar pedidos
-$pedidoController = new PedidoController();
+$pedidoModel = new PedidoModel();
+$pedidoController = new PedidoController($pedidoModel);
 $pedidoController->mostrarPedidos();
 ?>
