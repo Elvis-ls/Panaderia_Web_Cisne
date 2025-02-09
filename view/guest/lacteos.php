@@ -4,6 +4,7 @@
 
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
+<script src="/Panaderia_Web/public/js/animacion_menu.js"></script>
 
 <main class="main-content">
     <h1>Lácteos</h1>

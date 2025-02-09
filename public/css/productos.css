@@ -8,33 +8,38 @@
 .producto {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 280px;
     text-align: center;
     padding: 20px;
 }
 
 .producto:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .producto h2 {
-    font-size: 1.5em;
-    margin: 0.5em 0;
+    font-size: 1.4em;
+    margin: 10px 0;
+    color: #333;
 }
 
 .producto p {
-    color: #555;
-    margin: 0.5em 0;
+    color: #666;
+    font-size: 1em;
+    margin: 10px 0;
 }
 
+/* Estilo mejorado para las imágenes */
 .producto img {
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ddd;
+    width: 150px; /* Tamaño uniforme */
+    height: 150px; /* Tamaño uniforme */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    border-radius: 15px; /* Esquinas redondeadas */
+    border: 3px solid #ddd; /* Borde sutil */
     margin-bottom: 15px;
 }

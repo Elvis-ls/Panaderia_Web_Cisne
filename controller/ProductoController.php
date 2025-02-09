@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/ProductoModel.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/CategoriaModel.php');
+session_start(); // Iniciar sesión para acceder al rol del usuario
 
 class ProductoController {
     private $productoModel;
@@ -15,99 +16,60 @@ class ProductoController {
      * Maneja las solicitudes y llama a los métodos correspondientes.
      */
     public function handleRequest() {
-        if (isset($_GET['action'])) {
-            $action = $_GET['action'];
-            switch ($action) {
-                case 'panaderia':
-                    $this->showPanaderia();
-                    break;
-                case 'pasteleria':
-                    $this->showPasteleria();
-                    break;
-                case 'galleteria':
-                    $this->showGalleteria();
-                    break;
-                case 'lacteos':
-                    $this->showLacteos();
-                    break;
-                case 'inicio':
-                    header("Location: /Panaderia_Web/inicio.php");
-                    exit;
-                default:
-                    echo "Página no encontrada";
-                    break;
-            }
-        } else {
-            $this->showInicio();
-        }
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start(); // Solo iniciar la sesión si no está activa
     }
+
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+        switch ($action) {
+            case 'panaderia':
+            case 'pasteleria':
+            case 'galleteria':
+            case 'lacteos':
+                $this->showCategoria($action);
+                break;
+            case 'inicio':
+                $this->showInicio();
+                break;
+            default:
+                echo "Página no encontrada";
+                break;
+        }
+    } else {
+        $this->showInicio();
+    }
+}
+
+    
     /**
-     * Muestra la vista de inicio.
+     * Determina qué vista de inicio mostrar según el rol del usuario.
      */
     private function showInicio() {
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/inicio.php');
-    }
-
-    /**
-     * Muestra la vista de Panadería.
-     */
-    private function showPanaderia() {
-        $categoriaData = $this->categoriaModel->getCategoriaPorNombre('panaderia');
-        if ($categoriaData) {
-            $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/guest/panaderia.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
+        if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'usuario') {
+            header("Location: /Panaderia_Web/view/user/inicio.php");
         } else {
-            echo "Categoría no encontrada.";
+            header("Location: /Panaderia_Web/inicio.php");
         }
+        exit;
     }
+    
+
 
     /**
-     * Muestra la vista de Pastelería.
+     * Muestra la vista de una categoría según el rol del usuario.
      */
-    private function showPasteleria() {
-        $categoriaData = $this->categoriaModel->getCategoriaPorNombre('pasteleria');
+    private function showCategoria($categoria) {
+        $categoriaData = $this->categoriaModel->getCategoriaPorNombre($categoria);
         if ($categoriaData) {
             $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
             if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/guest/pasteleria.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
-        } else {
-            echo "Categoría no encontrada.";
-        }
-    }
+                // Determinar vista según el rol
+                $vistaPath = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'usuario') ?
+                    "/Panaderia_Web/view/user/$categoria.php" :
+                    "/Panaderia_Web/view/guest/$categoria.php";
 
-    /**
-     * Muestra la vista de Galletería.
-     */
-    private function showGalleteria() {
-        $categoriaData = $this->categoriaModel->getCategoriaPorNombre('galleteria');
-        if ($categoriaData) {
-            $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/guest/galleteria.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
-        } else {
-            echo "Categoría no encontrada.";
-        }
-    }
-
-    /**
-     * Muestra la vista de Lácteos.
-     */
-    private function showLacteos() {
-        $categoriaData = $this->categoriaModel->getCategoriaPorNombre('lacteos');
-        if ($categoriaData) {
-            $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/guest/lacteos.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . $vistaPath);
             } else {
                 echo "No hay productos disponibles en esta categoría.";
             }
