@@ -10,8 +10,8 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
 
-// Obtener los productos de la categoría "Panadería"
-$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Panadería"
+// Obtener los productos de la categoría "Pastelería"
+$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Pastelería"
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>

@@ -62,7 +62,7 @@ session_start();?>
                         <p>Sumérgete en el sabor de nuestras galletas caseras, preparadas con amor y los mejores ingredientes. Desde las clásicas hasta opciones innovadoras, cada bocado es una explosión de sabor.</p>
                     </div>
                 </div>
-                <a href="galletaria_user.php">Ver más</a>
+                <a href="galleteria_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
