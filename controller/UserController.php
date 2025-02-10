@@ -1,44 +1,31 @@
 <?php
-require_once(__DIR__ . '/../model/UserModel.php');
+session_start();
+require_once __DIR__ . '/../model/UserModel.php';
 
-class UsuarioController {
-    private $usuarioModel;
+$usuarioModel = new UsuarioModel();
 
-    public function __construct() {
-        $this->usuarioModel = new UsuarioModel();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Verificar si el usuario está logueado
+    if (!isset($_SESSION['id'])) {
+        header("Location: ../view/guest/login.php");
+        exit;
     }
 
-    public function actualizarPerfil() {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        if (!isset($_SESSION['usuario_id'])) {
-            header("Location: ../view/user/login.php");
-            exit;
-        }
+    $usuario_id = $_SESSION['id'];
+    $nombre = $_POST['nombre'];
+    $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
 
-        $usuario_id = $_SESSION['usuario_id'];
-        $nombre = $_POST['nombre'];
-        $correo = $_POST['correo'];
-        $telefono = $_POST['telefono'];
-        $direccion = $_POST['direccion'];
+    $resultado = $usuarioModel->actualizarUsuario($usuario_id, $nombre, $correo, $telefono, $direccion);
 
-        $resultado = $this->usuarioModel->actualizarPerfil($usuario_id, $nombre, $correo, $telefono, $direccion);
-
-        if ($resultado) {
-            $_SESSION['mensaje'] = "Perfil actualizado correctamente.";
-        } else {
-            $_SESSION['mensaje'] = "Error al actualizar el perfil.";
-        }
-
-        header("Location: ../view/user/perfil.php");
+    if ($resultado) {
+        $_SESSION['mensaje'] = 'Perfil actualizado correctamente.';
+    } else {
+        $_SESSION['mensaje'] = 'Error al actualizar el perfil.';
     }
-}
 
-// Manejar las solicitudes
-$usuarioController = new UsuarioController();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuarioController->actualizarPerfil();
+    header("Location: ../view/user/perfil.php");
+    exit;
 }
 ?>

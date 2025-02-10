@@ -19,6 +19,7 @@
                         <label for="contraseña">Contraseña</label>
                         <input type="password" class="form-control" name="contraseña" required>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Ingresar</button>
                 </form>
             </div>

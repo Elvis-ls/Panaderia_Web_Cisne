@@ -1,4 +1,4 @@
-<?php $pagina = 'inicio'; 
+<?php $pagina = 'inicio_user'; 
 session_start();?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,7 +36,7 @@ session_start();?>
                         <p>Disfruta de una amplia variedad de panes frescos y recién horneados, ideales para cualquier momento del día. Desde panes clásicos hasta opciones especiales, perfectas para acompañar tu desayuno o merienda.</p>
                     </div>
                 </div>
-                <a href="panaderia.html">Ver más</a>
+                <a href="panaderia_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -49,7 +49,7 @@ session_start();?>
                         <p>Deléitate con nuestras deliciosas creaciones de pastelería, elaboradas con los mejores ingredientes. Tienes una variedad de tortas, galletas y dulces perfectos para cualquier celebración o simplemente para consentirte.</p>
                     </div>
                 </div>
-                <a href="pasteleria.html">Ver más</a>
+                <a href="pasteleria_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -62,7 +62,7 @@ session_start();?>
                         <p>Sumérgete en el sabor de nuestras galletas caseras, preparadas con amor y los mejores ingredientes. Desde las clásicas hasta opciones innovadoras, cada bocado es una explosión de sabor.</p>
                     </div>
                 </div>
-                <a href="galletaria.html">Ver más</a>
+                <a href="galleteria_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -75,7 +75,7 @@ session_start();?>
                         <p>Nuestros productos lácteos son de la más alta calidad, ideales para complementar tu dieta. Encuentra leches, quesos y yogures frescos, perfectos para acompañar tus desayunos o preparar recetas deliciosas.</p>
                     </div>
                 </div>
-                <a href="lacteos.html">Ver más</a>
+                <a href="lacteos_user.php">Ver más</a>
             </div>
         </div>
     </main>   
