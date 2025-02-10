@@ -15,7 +15,7 @@
                     <h2><?php echo $producto['nombre']; ?></h2>
                     <p><?php echo $producto['descripcion']; ?></p>
                     <p>Precio: <?php echo $producto['precio']; ?></p>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarModal" data-id="<?php echo $producto['id']; ?>" data-nombre="<?php echo $producto['nombre']; ?>" data-descripcion="<?php echo $producto['descripcion']; ?>" data-precio="<?php echo $producto['precio']; ?>" data-categoria_id="<?php echo $producto['categoria_id']; ?>">Editar</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarModal" data-id="<?php echo $producto['id']; ?>" data-nombre="<?php echo $producto['nombre']; ?>" data-descripcion="<?php echo $producto['descripcion']; ?>" data-precio="<?php echo $producto['precio']; ?>" data-categoria_id="<?php echo $producto['categoria_id']; ?>" data-imagen="<?php echo $producto['imagen']; ?>">Editar</button>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal" data-id="<?php echo $producto['id']; ?>">Eliminar</button>
                 </div>
             <?php endforeach; ?>
@@ -35,7 +35,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="agregarProductoForm" method="POST" action="../../controller/ProductoAdminController.php?action=agregar">
+            <form id="agregarProductoForm" method="POST" action="../../controller/ProductoAdminController.php?action=agregar" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
@@ -52,12 +52,14 @@
                     <div class="form-group">
                         <label for="categoria_id">Categoría</label>
                         <select class="form-control" id="categoria_id" name="categoria_id" required>
-                            <!-- Opciones de categorías -->
+                            <?php foreach ($categorias as $categoria): ?>
+                                <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="imagen">Imagen (URL)</label>
-                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                        <label for="imagen">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -79,7 +81,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editarProductoForm" method="POST" action="../../controller/ProductoAdminController.php?action=editar">
+            <form id="editarProductoForm" method="POST" action="../../controller/ProductoAdminController.php?action=editar" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" id="editar_id" name="id">
                     <div class="form-group">
@@ -97,12 +99,14 @@
                     <div class="form-group">
                         <label for="editar_categoria_id">Categoría</label>
                         <select class="form-control" id="editar_categoria_id" name="categoria_id" required>
-                            <!-- Opciones de categorías -->
+                            <?php foreach ($categorias as $categoria): ?>
+                                <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="editar_imagen">Imagen (URL)</label>
-                        <input type="text" class="form-control" id="editar_imagen" name="imagen">
+                        <label for="editar_imagen">Imagen</label>
+                        <input type="file" class="form-control" id="editar_imagen" name="imagen">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,9 +142,9 @@
     </div>
 </div>
 
-
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
 
-<!-- Incluir jQuery -->
+<!-- Incluir jQuery y Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Panaderia_Web/public/js/animacion_menu.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../../public/js/modalesProductos.js"></script>

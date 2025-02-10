@@ -56,11 +56,8 @@ class ProductoAdminController {
         $categoriaData = $this->categoriaModel->getCategoriaPorNombre('panaderia');
         if ($categoriaData) {
             $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/panaderiaAdmin.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
+            $categorias = $this->categoriaModel->getCategorias();
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/panaderiaAdmin.php');
         } else {
             echo "Categoría no encontrada.";
         }
@@ -70,11 +67,8 @@ class ProductoAdminController {
         $categoriaData = $this->categoriaModel->getCategoriaPorNombre('pasteleria');
         if ($categoriaData) {
             $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/pasteleriaAdmin.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
+            $categorias = $this->categoriaModel->getCategorias();
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/pasteleriaAdmin.php');
         } else {
             echo "Categoría no encontrada.";
         }
@@ -84,11 +78,8 @@ class ProductoAdminController {
         $categoriaData = $this->categoriaModel->getCategoriaPorNombre('galleteria');
         if ($categoriaData) {
             $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/galleteriaAdmin.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
+            $categorias = $this->categoriaModel->getCategorias();
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/galleteriaAdmin.php');
         } else {
             echo "Categoría no encontrada.";
         }
@@ -98,11 +89,8 @@ class ProductoAdminController {
         $categoriaData = $this->categoriaModel->getCategoriaPorNombre('lacteos');
         if ($categoriaData) {
             $productos = $this->productoModel->getProductosPorCategoria($categoriaData['id']);
-            if ($productos) {
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/lacteosAdmin.php');
-            } else {
-                echo "No hay productos disponibles en esta categoría.";
-            }
+            $categorias = $this->categoriaModel->getCategorias();
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/admin/lacteosAdmin.php');
         } else {
             echo "Categoría no encontrada.";
         }
@@ -114,7 +102,12 @@ class ProductoAdminController {
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
             $categoriaId = $_POST['categoria_id'];
-            $imagen = $_POST['imagen']; // Usar el enlace de la imagen en lugar de subir un archivo
+            
+            // Manejar la subida de la imagen
+            $imagen = $_FILES['imagen']['name'];
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
+            $target_file = $target_dir . basename($imagen);
+            move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file);
 
             $this->productoModel->agregarProducto($nombre, $descripcion, $precio, $categoriaId, $imagen);
             header("Location: /Panaderia_Web/view/admin/galleteriaAdmin.php");
@@ -129,7 +122,12 @@ class ProductoAdminController {
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
             $categoriaId = $_POST['categoria_id'];
-            $imagen = $_POST['imagen']; // Usar el enlace de la imagen en lugar de subir un archivo
+            
+            // Manejar la subida de la imagen
+            $imagen = $_FILES['imagen']['name'];
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
+            $target_file = $target_dir . basename($imagen);
+            move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file);
 
             $this->productoModel->editarProducto($id, $nombre, $descripcion, $precio, $categoriaId, $imagen);
             header("Location: /Panaderia_Web/view/admin/galleteriaAdmin.php");
