@@ -62,7 +62,7 @@ session_start();?>
                         <p>Sumérgete en el sabor de nuestras galletas caseras, preparadas con amor y los mejores ingredientes. Desde las clásicas hasta opciones innovadoras, cada bocado es una explosión de sabor.</p>
                     </div>
                 </div>
-                <a href="galletaria.html">Ver más</a>
+                <a href="galleteria_user.php">Ver más</a>
             </div>
 
             <div class="menu-item">
@@ -75,7 +75,7 @@ session_start();?>
                         <p>Nuestros productos lácteos son de la más alta calidad, ideales para complementar tu dieta. Encuentra leches, quesos y yogures frescos, perfectos para acompañar tus desayunos o preparar recetas deliciosas.</p>
                     </div>
                 </div>
-                <a href="lacteos.html">Ver más</a>
+                <a href="lacteos_user.php">Ver más</a>
             </div>
         </div>
     </main>   

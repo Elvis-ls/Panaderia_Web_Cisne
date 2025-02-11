@@ -1,23 +1,21 @@
 <nav>
     <div class="nav-container">
-        <a href="/Panaderia_Web/inicio.php?action=inicio" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/dashboard.php?action=inicio" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=panaderia" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/dashboard.php?action=panaderia" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
             <i class="fas fa-bread-slice"></i> Panadería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=pasteleria" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/dashboard.php?action=pasteleria" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
             <i class="fas fa-cake"></i> Pastelería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/dashboard.php?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
             <i class="fas fa-cookie"></i> Galletería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/dashboard.php?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
             <i class="fas fa-coffee"></i> Lácteos
         </a>
-        <a href="/Panaderia_Web/view/ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">
-            <i class="fas fa-info-circle"></i> Ayuda
-        </a>
+    
         <a href="perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
             <i class="fas fa-user"></i> Mi perfil
         </a>

@@ -3,16 +3,16 @@
         <a href="inicio.php" class="<?php echo ($pagina == 'inicio_user') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a href="panaderia_user.php" class="<?php echo ($pagina == 'panaderia_user') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/user/panaderia_user.php" class="<?php echo ($pagina == 'panaderia_user') ? 'active' : ''; ?>">
             <i class="fas fa-bread-slice"></i> Panadería
         </a>
-        <a href="pasteleria_user.php" class="<?php echo ($pagina == 'pasteleria_user') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/user/pasteleria_user.php" class="<?php echo ($pagina == 'pasteleria_user') ? 'active' : ''; ?>">
             <i class="fas fa-cake"></i> Pastelería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/user/galleteria_user.php" class="<?php echo ($pagina == 'galleteria_user') ? 'active' : ''; ?>">
             <i class="fas fa-cookie"></i> Galletería
         </a>
-        <a href="/Panaderia_Web/inicio.php?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/user/lacteos_user.php" class="<?php echo ($pagina == 'lacteos_user') ? 'active' : ''; ?>">
             <i class="fas fa-coffee"></i> Lácteos
         </a>
         <a href="/Panaderia_Web/view/user/ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">

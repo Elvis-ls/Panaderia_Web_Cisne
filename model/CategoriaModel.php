@@ -21,4 +21,16 @@ class CategoriaModel {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    /**
+     * Obtiene todas las categorías.
+     *
+     * @return array
+     */
+    public function getCategorias() {
+        $query = "SELECT * FROM categorias";
+        $result = $this->db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
+?>
