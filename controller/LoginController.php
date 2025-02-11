@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../model/UsuarioModel.php';
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/config/conexion.php'); // Incluir la conexión
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/UsuarioModel.php'); // Incluir el modelo
 
 $response = array('success' => false, 'message' => '');
 
@@ -12,7 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     error_log("Correo: $correo");
     error_log("Contraseña: $contraseña");
 
-    $usuarioModel = new UsuarioModel();
+    // Instanciar el modelo y pasar la conexión
+    $usuarioModel = new UsuarioModel($con);
+
+    // Llamar al método login
     $usuario = $usuarioModel->login($correo, $contraseña);
 
     // Depuración: Verificar la respuesta del método login

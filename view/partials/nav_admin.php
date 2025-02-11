@@ -3,34 +3,18 @@
         <a href="/Panaderia_Web/view/admin/dashboard.php?action=inicio" class="<?php echo ($pagina == 'inicio') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a href="/Panaderia_Web/view/admin/dashboard.php?action=panaderia" class="<?php echo ($pagina == 'panaderia') ? 'active' : ''; ?>">
-            <i class="fas fa-bread-slice"></i> Panadería
+        <a href="/Panaderia_Web/view/admin/gestionar_pedidos.php" class="<?php echo ($pagina == 'gestPedidos') ? 'active' : ''; ?>">
+            <i class="fas fa-box"></i> Gestionar Pedidos
         </a>
-        <a href="/Panaderia_Web/view/admin/dashboard.php?action=pasteleria" class="<?php echo ($pagina == 'pasteleria') ? 'active' : ''; ?>">
-            <i class="fas fa-cake"></i> Pastelería
-        </a>
-        <a href="/Panaderia_Web/view/admin/dashboard.php?action=galleteria" class="<?php echo ($pagina == 'galleteria') ? 'active' : ''; ?>">
-            <i class="fas fa-cookie"></i> Galletería
-        </a>
-        <a href="/Panaderia_Web/view/admin/dashboard.php?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
-            <i class="fas fa-coffee"></i> Lácteos
-        </a>
-    
-        <a href="perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
-            <i class="fas fa-user"></i> Mi perfil
-        </a>
-        <a href="pedidos.php" class="<?php echo ($pagina == 'pedidos') ? 'active' : ''; ?>">
-            <i class="fas fa-box"></i> Mis pedidos
-        </a>
+        <a href="/Panaderia_Web/view/admin/gestionar_usuarios.php" class="<?php echo ($pagina == 'gestUsuarios') ? 'active' : ''; ?>">
+            <i class="fas fa-box"></i> Gestionar Usuarios
+        </a>        
         <a href="notificaciones.php" class="<?php echo ($pagina == 'notificaciones') ? 'active' : ''; ?>">
-            <i class="fas fa-bell"></i> Notificaciones
-        </a>
-        <a href="/Panaderia_Web/controller/LogoutController.php">
-            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+            <i class="fas fa-bell"></i> Generar Notificaciones
         </a>
         <div class="dropdown">
             <a href="#" class="dropdown-toggle <?php echo ($pagina == 'reportes') ? 'active' : ''; ?>" id="reportesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-chart-bar"></i> Reportes
+                <i class="fas fa-chart-bar"></i> Generar Reportes
             </a>
             <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
                 <li><a class="dropdown-item" href="../view/admin/reportes_notificaciones.php">Reportes de Notificaciones</a></li>
@@ -38,5 +22,11 @@
                 <li><a class="dropdown-item" href="../view/admin/reportes_pedidos.php">Reportes de Pedidos</a></li>
             </ul>
         </div>
+        <a href="perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
+            <i class="fas fa-user"></i> Mi perfil
+        </a>
+        <a href="/Panaderia_Web/controller/LogoutController.php">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+        </a>
     </div>
 </nav>
