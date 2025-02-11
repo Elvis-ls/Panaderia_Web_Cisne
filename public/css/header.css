@@ -1,0 +1,33 @@
+.header-extras {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-extras .btn-outline-light {
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-extras .btn-outline-light:hover {
+    color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
+    border-color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
+}
+
+.header-extras .badge {
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+
+.header-extras .btn {
+    margin-left: 10px; /* Separar los botones */
+}
+
+.header-extras .position-relative {
+    margin-right: 20px; /* Separar el icono del carrito */
+}
+
+.header-extras form {
+    margin-left: 20px; /* Separar la barra de búsqueda */
+}

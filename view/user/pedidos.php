@@ -28,28 +28,8 @@ $pedidos = $pedidoModel->obtenerPedidos($usuario_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Pedidos</title>
     <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/pedidos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .main-content {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .main-content h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .table-container {
-            overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es más ancha que el contenedor */
-        }
-        .table {
-            width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
     <?php include ('../partials/header.php'); ?>
@@ -78,7 +58,7 @@ $pedidos = $pedidoModel->obtenerPedidos($usuario_id);
                                 <td><?= $pedido['id'] ?></td>
                                 <td><?= $pedido['fecha_pedido'] ?></td>
                                 <td>$<?= number_format($pedido['total'], 2) ?></td>
-                                <td><span class="badge bg-info"><?= $pedido['estado'] ?></span></td>
+                                <td><span class="badge" style="background-color: #3d8d58; color: #fff;"><?= $pedido['estado'] ?></span></td>
                                 <td>
                                     <a href="../../controller/ReporteController.php?pedido_id=<?= $pedido['id'] ?>" class="btn btn-primary btn-sm">Generar PDF</a>
                                 </td>
