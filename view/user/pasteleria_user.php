@@ -1,5 +1,5 @@
 <?php
-$pagina = 'pasteleria_user';
+$pagina = 'panaderia_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -10,8 +10,8 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
 
-// Obtener los productos de la categoría "Pastelería"
-$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Pastelería"
+// Obtener los productos de la categoría "Panadería"
+$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Panadería"
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -19,6 +19,10 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
+<!-- Incluir el archivo CSS para pedidos personalizados -->
+<link rel="stylesheet" href="/Panaderia_Web/public/css/pedido_personalizado.css">
+<!-- Incluir Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <main class="main-content">
     <h1>Pastelería</h1>
@@ -31,16 +35,19 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
                     <h2><?php echo $producto['nombre']; ?></h2>
                     <p><?php echo $producto['descripcion']; ?></p>
                     <p>Precio: <?php echo $producto['precio']; ?></p>
+                    <p>Stock: <?php echo $producto['stock']; ?></p>
                     <form action="/Panaderia_Web/controller/CarritoController.php" method="POST">
                         <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                        <input type="hidden" name="accion" value="agregar">
                         <div class="form-group cantidad-group">
                             <label for="cantidad_<?php echo $producto['id']; ?>">Cantidad:</label>
                             <div class="input-group">
-                                <button type="button" class="btn btn-outline-secondary" onclick="decrementarCantidad(<?php echo $producto['id']; ?>)">-</button>
-                                <input type="number" id="cantidad_<?php echo $producto['id']; ?>" name="cantidad" value="1" min="1" class="form-control text-center">
-                                <button type="button" class="btn btn-outline-secondary" onclick="incrementarCantidad(<?php echo $producto['id']; ?>)">+</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="decrementarCantidad(<?php echo $producto['id']; ?>, <?php echo $producto['stock']; ?>)">-</button>
+                                <input type="number" id="cantidad_<?php echo $producto['id']; ?>" name="cantidad" value="1" min="1" max="<?php echo $producto['stock']; ?>" class="form-control text-center">
+                                <button type="button" class="btn btn-outline-secondary" onclick="incrementarCantidad(<?php echo $producto['id']; ?>, <?php echo $producto['stock']; ?>)">+</button>
                             </div>
                         </div>
+                        <br>
                         <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                     </form>
                 </div>
@@ -49,20 +56,52 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
             <p>No hay productos disponibles en esta categoría.</p>
         <?php endif; ?>
     </div>
+
+    <!-- Botón para abrir la ventana modal de pedido personalizado -->
+    <div class="pedido-personalizado">
+        <h2>¿No encuentras lo que buscas?</h2>
+        <p>Realiza un pedido personalizado:</p>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#pedidoPersonalizadoModal">Pedido Personalizado</button>
+    </div>
 </main>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
 
-<script>
-function incrementarCantidad(id) {
-    var cantidadInput = document.getElementById('cantidad_' + id);
-    cantidadInput.value = parseInt(cantidadInput.value) + 1;
-}
+<!-- Ventana modal para el pedido personalizado -->
+<div class="modal fade" id="pedidoPersonalizadoModal" tabindex="-1" role="dialog" aria-labelledby="pedidoPersonalizadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pedidoPersonalizadoModalLabel">Pedido Personalizado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Panaderia_Web/controller/PedidoPersonalizadoController.php" method="POST">
+                    <div class="form-group">
+                        <label for="nombre">Nombre del Producto:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-function decrementarCantidad(id) {
-    var cantidadInput = document.getElementById('cantidad_' + id);
-    if (cantidadInput.value > 1) {
-        cantidadInput.value = parseInt(cantidadInput.value) - 1;
-    }
-}
-</script>
+<!-- Incluir Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Incluir el archivo JavaScript -->
+<script src="/Panaderia_Web/public/js/productos.js"></script>
+<script src="/Panaderia_Web/public/js/pedido_personalizado.js"></script>

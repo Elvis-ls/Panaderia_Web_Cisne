@@ -45,27 +45,22 @@ class PDF extends FPDF {
         $this->SetFont('Arial','',12);
         
         // Encabezados de la tabla
-        $this->Cell(40,10,'Producto',1);
+        $this->Cell(60,10,'Producto',1);
         $this->Cell(30,10,'Cantidad',1);
-        $this->Cell(40,10,'Precio Unitario',1);
-        $this->Cell(40,10,'Subtotal',1);
+        $this->Cell(50,10,'Precio Unitario',1);
+        $this->Cell(50,10,'Subtotal',1);
         $this->Ln();
 
         // Datos de la tabla
         foreach ($detalles as $detalle) {
-            $this->Cell(40,10,$detalle['nombre'],1);
+            $this->Cell(60,10,$detalle['nombre'],1);
             $this->Cell(30,10,$detalle['cantidad'],1);
-            $this->Cell(40,10,'$' . number_format($detalle['precio_unitario'], 2),1);
-            $this->Cell(40,10,'$' . number_format($detalle['cantidad'] * $detalle['precio_unitario'], 2),1);
+            $this->Cell(50,10,'$' . number_format($detalle['precio_unitario'], 2),1);
+            $this->Cell(50,10,'$' . number_format($detalle['cantidad'] * $detalle['precio_unitario'], 2),1);
             $this->Ln();
         }
         $this->Ln(10);
 
-        // Información adicional
-        $this->SetFont('Arial','B',12);
-        $this->Cell(0,10,'Información Adicional',0,1);
-        $this->SetFont('Arial','',12);
-        $this->MultiCell(0,10,'Aquí puedes agregar cualquier otra información relevante sobre el pedido, como notas del cliente, instrucciones especiales, etc.',0,1);
     }
 }
 

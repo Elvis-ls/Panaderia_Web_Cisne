@@ -1,5 +1,5 @@
 <?php
-$pagina = 'galleteria_user';
+$pagina = 'panaderia_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -10,8 +10,8 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
 
-// Obtener los productos de la categoría "Galletería"
-$productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría "Galletería"
+// Obtener los productos de la categoría "Panadería"
+$productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría "Panadería"
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -31,16 +31,19 @@ $productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría
                     <h2><?php echo $producto['nombre']; ?></h2>
                     <p><?php echo $producto['descripcion']; ?></p>
                     <p>Precio: <?php echo $producto['precio']; ?></p>
+                    <p>Stock: <?php echo $producto['stock']; ?></p>
                     <form action="/Panaderia_Web/controller/CarritoController.php" method="POST">
                         <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                        <input type="hidden" name="accion" value="agregar">
                         <div class="form-group cantidad-group">
                             <label for="cantidad_<?php echo $producto['id']; ?>">Cantidad:</label>
                             <div class="input-group">
-                                <button type="button" class="btn btn-outline-secondary" onclick="decrementarCantidad(<?php echo $producto['id']; ?>)">-</button>
-                                <input type="number" id="cantidad_<?php echo $producto['id']; ?>" name="cantidad" value="1" min="1" class="form-control text-center">
-                                <button type="button" class="btn btn-outline-secondary" onclick="incrementarCantidad(<?php echo $producto['id']; ?>)">+</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="decrementarCantidad(<?php echo $producto['id']; ?>, <?php echo $producto['stock']; ?>)">-</button>
+                                <input type="number" id="cantidad_<?php echo $producto['id']; ?>" name="cantidad" value="1" min="1" max="<?php echo $producto['stock']; ?>" class="form-control text-center">
+                                <button type="button" class="btn btn-outline-secondary" onclick="incrementarCantidad(<?php echo $producto['id']; ?>, <?php echo $producto['stock']; ?>)">+</button>
                             </div>
                         </div>
+                        <br>
                         <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                     </form>
                 </div>
@@ -54,12 +57,14 @@ $productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
 
 <script>
-function incrementarCantidad(id) {
+function incrementarCantidad(id, stock) {
     var cantidadInput = document.getElementById('cantidad_' + id);
-    cantidadInput.value = parseInt(cantidadInput.value) + 1;
+    if (parseInt(cantidadInput.value) < stock) {
+        cantidadInput.value = parseInt(cantidadInput.value) + 1;
+    }
 }
 
-function decrementarCantidad(id) {
+function decrementarCantidad(id, stock) {
     var cantidadInput = document.getElementById('cantidad_' + id);
     if (cantidadInput.value > 1) {
         cantidadInput.value = parseInt(cantidadInput.value) - 1;
