@@ -27,7 +27,7 @@
         <a href="notificaciones.php" class="<?php echo ($pagina == 'notificaciones') ? 'active' : ''; ?>">
             <i class="fas fa-bell"></i> Notificaciones
         </a>
-        <a href="../../controller/LogoutController.php">
+        <a href="/Panaderia_Web/controller/LogoutController.php">
             <i class="fas fa-sign-out-alt"></i> Cerrar sesión
         </a>
         <div class="dropdown">
