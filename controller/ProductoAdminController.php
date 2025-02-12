@@ -2,6 +2,23 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/ProductoAdminModel.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/CategoriaModel.php');
 
+// Configuración de la base de datos
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'panaderiadb';
+
+// Crear conexión
+$db = new mysqli($host, $user, $password, $database);
+
+// Verificar conexión
+if ($db->connect_error) {
+    die("Conexión fallida: " . $db->connect_error);
+}
+
+// Crear instancia del controlador y pasar la conexión a la base de datos
+$controller = new ProductoAdminController($db);
+$controller->handleRequest();
 class ProductoAdminController {
     private $productoModel;
     private $categoriaModel;
@@ -102,15 +119,26 @@ class ProductoAdminController {
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
             $categoriaId = $_POST['categoria_id'];
-            
-            // Manejar la subida de la imagen
-            $imagen = $_FILES['imagen']['name'];
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
-            $target_file = $target_dir . basename($imagen);
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file);
+            $stock = $_POST['stock'];
 
-            $this->productoModel->agregarProducto($nombre, $descripcion, $precio, $categoriaId, $imagen);
-            header("Location: /Panaderia_Web/view/admin/galleteriaAdmin.php");
+            // Manejar la subida de la imagen
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
+                $imagen = basename($_FILES['imagen']['name']);
+                $target_file = $target_dir . $imagen;
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file);
+            } else {
+                $imagen = null;
+            }
+
+            $resultado = $this->productoModel->agregarProducto($nombre, $descripcion, $precio, $categoriaId, $imagen, $stock);
+
+            header('Content-Type: application/json');
+            if ($resultado) {
+                echo json_encode(['success' => true, 'message' => 'Producto agregado con éxito']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al agregar el producto']);
+            }
             exit;
         }
     }
@@ -121,16 +149,39 @@ class ProductoAdminController {
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
-            $categoriaId = $_POST['categoria_id'];
-            
-            // Manejar la subida de la imagen
-            $imagen = $_FILES['imagen']['name'];
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
-            $target_file = $target_dir . basename($imagen);
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file);
+            $stock = $_POST['stock'];
+            $categoria_id = $_POST['categoria_id'];
+            $imagen_actual = $_POST['imagen_actual'];
 
-            $this->productoModel->editarProducto($id, $nombre, $descripcion, $precio, $categoriaId, $imagen);
-            header("Location: /Panaderia_Web/view/admin/galleteriaAdmin.php");
+            // Manejar la subida de la nueva imagen si se proporciona
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/Panaderia_Web/public/images/";
+                $imagen = basename($_FILES['imagen']['name']);
+                $target_file = $target_dir . $imagen;
+
+                // Mover la imagen subida a la carpeta de destino
+                if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
+                    // Eliminar la imagen actual si es diferente de la nueva
+                    if ($imagen_actual && $imagen_actual !== $imagen) {
+                        unlink($target_dir . $imagen_actual);
+                    }
+                } else {
+                    // Manejar error al mover la imagen
+                    $imagen = $imagen_actual;
+                }
+            } else {
+                // Si no se subió una nueva imagen, mantener la imagen actual
+                $imagen = $imagen_actual;
+            }
+
+            $resultado = $this->productoModel->editarProducto($id, $nombre, $descripcion, $precio, $categoria_id, $imagen, $stock);
+
+            header('Content-Type: application/json');
+            if ($resultado) {
+                echo json_encode(['success' => true, 'message' => 'Producto modificado con éxito']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al modificar el producto']);
+            }
             exit;
         }
     }
@@ -138,10 +189,18 @@ class ProductoAdminController {
     private function eliminarProducto() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
-            $this->productoModel->eliminarProducto($id);
-            header("Location: /Panaderia_Web/view/admin/galleteriaAdmin.php");
+
+            $resultado = $this->productoModel->eliminarProducto($id);
+
+            header('Content-Type: application/json');
+            if ($resultado) {
+                echo json_encode(['success' => true, 'message' => 'Producto eliminado con éxito']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al eliminar el producto']);
+            }
             exit;
         }
     }
 }
+
 ?>
