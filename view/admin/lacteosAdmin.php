@@ -3,6 +3,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 
 <main class="main-content">
     <h1>Lácteos</h1>

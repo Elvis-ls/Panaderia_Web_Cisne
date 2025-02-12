@@ -3,6 +3,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 
 <main class="main-content">
     <h1>Galletería</h1>
@@ -161,7 +162,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+<<<<<<< HEAD
             <form id="eliminarProductoForm" method="POST">
+=======
+            <form id="eliminarProductoForm" method="POST" action="/Panaderia_Web/controller/ProductoAdminController.php?action=eliminar">
+>>>>>>> 4f579a749cbf0b94ad013f12115a770fc8aa6e44
                 <div class="modal-body">
                     <input type="hidden" id="eliminar_id" name="id">
                     <p>¿Estás seguro de que deseas eliminar este producto?</p>

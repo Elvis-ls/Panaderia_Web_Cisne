@@ -1,0 +1,57 @@
+.main-content {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.main-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #8d583d; /* Color principal */
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.form-group label {
+    font-weight: bold;
+    flex: 1;
+    color: #5a3e2b; /* Color secundario */
+}
+.form-control {
+    flex: 2;
+    border: 1px solid #8d583d; /* Color principal */
+    border-radius: 5px;
+    padding: 5px;
+}
+.edit-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #8d583d; /* Color principal */
+}
+.save-button {
+    display: none;
+    margin-top: 20px;
+    background-color: #8d583d; /* Color principal */
+    border-color: #8d583d; /* Color principal */
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.save-button:hover {
+    background-color: #5a3e2b; /* Color secundario */
+    border-color: #5a3e2b; /* Color secundario */
+}
+.modal-footer .btn-primary {
+    background-color: #8d583d; /* Color principal */
+    border-color: #8d583d; /* Color principal */
+    color: #fff;
+}
+.modal-footer .btn-primary:hover {
+    background-color: #5a3e2b; /* Color secundario */
+    border-color: #5a3e2b; /* Color secundario */
+}

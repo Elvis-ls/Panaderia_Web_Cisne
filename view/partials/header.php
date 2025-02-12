@@ -9,35 +9,13 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
-    <style>
-        .header-extras .btn-outline-light {
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        .header-extras .btn-outline-light:hover {
-            color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
-            border-color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
-        }
-        .header-extras .badge {
-            font-size: 0.8em;
-            padding: 0.5em;
-        }
-        .header-extras .btn {
-            margin-left: 10px; /* Separar los botones */
-        }
-        .header-extras .position-relative {
-            margin-right: 20px; /* Separar el icono del carrito */
-        }
-        .header-extras form {
-            margin-left: 20px; /* Separar la barra de búsqueda */
-        }
-    </style>
-    <!-- Encabezado con logo y bienvenida -->
+    
     <div class="d-flex justify-content-between align-items-center">
         <div class="logo">
             <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería">
             <h1>Panadería Don Juan</h1>
         </div>
-        <p>El arte de hornear con amor</p>
+        
         
         <?php if (isset($_SESSION['rol_id'])): ?>
             <div class="header-extras d-flex justify-content-end align-items-center" style="margin-top: 20px;">
@@ -65,4 +43,5 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         <?php endif; ?>
     </div>
+    <p>El arte de hornear con amor</p>
 </header>
