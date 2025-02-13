@@ -1,4 +1,7 @@
 <?php
+session_start();
+$pagina = 'notificaciones';
+
 // Vista: ver_notificaciones.php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/config/conexion.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/controller/NotificacionController.php');
@@ -30,7 +33,7 @@ $notificaciones = $controlador->mostrarNotificaciones();
 </head>
 <body>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_user.php'); ?>
 
     <main class="main-content">
         <div class="notificaciones-container">

@@ -20,7 +20,7 @@ $stmt->close();
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_user.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav.php'); ?>
 
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">

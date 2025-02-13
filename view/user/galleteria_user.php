@@ -1,5 +1,6 @@
 <?php
 $pagina = 'galleteria_user';
+session_start();
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';

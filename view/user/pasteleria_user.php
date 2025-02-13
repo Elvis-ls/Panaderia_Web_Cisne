@@ -1,5 +1,6 @@
 <?php
 $pagina = 'pasteleria_user';
+session_start();
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -22,13 +23,7 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
-<<<<<<< HEAD
-<!-- Incluir el archivo CSS para pedidos personalizados -->
-<link rel="stylesheet" href="/Panaderia_Web/public/css/pedido_personalizado.css">
-
-=======
 <link rel="stylesheet" href="/Panaderia_Web/public/css/modal.css">
->>>>>>> abca5b0bf244714d987389b3021b27d11626222c
 
 <main class="main-content">
 <h1 class="text-center flex-grow-1">Pastelería</h1>

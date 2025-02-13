@@ -31,11 +31,9 @@ $pedidos_personalizados = $pedidoModel->obtenerPedidosPersonalizados($usuario_id
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/pedidos.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../../public/css/gest_Usuarios.css">
-
-=======
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    
     <style>
         .main-content {
             padding: 20px;
@@ -44,11 +42,10 @@ $pedidos_personalizados = $pedidoModel->obtenerPedidosPersonalizados($usuario_id
             margin-top: 20px;
         }
     </style>
->>>>>>> abca5b0bf244714d987389b3021b27d11626222c
 </head>
 <body>
     <?php include ('../partials/header.php'); ?>
-    <?php include ('../partials/nav.php'); ?>
+    <?php include ('../partials/nav_user.php'); ?>
 
     <main class="main-content">
         <h1>Mis Pedidos</h1>
