@@ -19,6 +19,7 @@ $pedidoModel = new PedidoModel();
 // Obtener los pedidos del usuario
 $usuario_id = $_SESSION['id'];
 $pedidos = $pedidoModel->obtenerPedidos($usuario_id);
+$pedidos_personalizados = $pedidoModel->obtenerPedidosPersonalizados($usuario_id);
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +31,20 @@ $pedidos = $pedidoModel->obtenerPedidos($usuario_id);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/pedidos.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../../public/css/gest_Usuarios.css">
 
+=======
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .main-content {
+            padding: 20px;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+    </style>
+>>>>>>> abca5b0bf244714d987389b3021b27d11626222c
 </head>
 <body>
     <?php include ('../partials/header.php'); ?>
@@ -40,36 +53,83 @@ $pedidos = $pedidoModel->obtenerPedidos($usuario_id);
     <main class="main-content">
         <h1>Mis Pedidos</h1>
         
-        <?php if (empty($pedidos)): ?>
-            <div class="alert alert-warning text-center">No has realizado ningún pedido.</div>
-        <?php else: ?>
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>ID Pedido</th>
-                            <th>Fecha</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                            <th>Acciones</th> <!-- Nueva columna para el botón de reporte -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($pedidos as $pedido): ?>
-                            <tr>
-                                <td><?= $pedido['id'] ?></td>
-                                <td><?= $pedido['fecha_pedido'] ?></td>
-                                <td>$<?= number_format($pedido['total'], 2) ?></td>
-                                <td><span class="badge" style="background-color: #3d8d58; color: #fff;"><?= $pedido['estado'] ?></span></td>
-                                <td>
-                                    <a href="../../controller/ReporteController.php?pedido_id=<?= $pedido['id'] ?>" class="btn btn-primary btn-sm">Generar PDF</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+        <!-- Pestañas de Bootstrap -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pedidos-tab" data-toggle="tab" href="#pedidos" role="tab" aria-controls="pedidos" aria-selected="true">Pedidos Normales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pedidos-personalizados-tab" data-toggle="tab" href="#pedidos-personalizados" role="tab" aria-controls="pedidos-personalizados" aria-selected="false">Pedidos Personalizados</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">
+                <h2>Pedidos Normales</h2>
+                <?php if (empty($pedidos)): ?>
+                    <div class="alert alert-warning text-center">No has realizado ningún pedido.</div>
+                <?php else: ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th> <!-- Nueva columna para el botón de reporte -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($pedidos as $pedido): ?>
+                                    <tr>
+                                        <td><?= $pedido['id'] ?></td>
+                                        <td><?= $pedido['fecha_pedido'] ?></td>
+                                        <td>$<?= number_format($pedido['total'], 2) ?></td>
+                                        <td><span class="badge" style="background-color: #3d8d58; color: #fff;"><?= $pedido['estado'] ?></span></td>
+                                        <td>
+                                            <a href="../../controller/ReporteController.php?pedido_id=<?= $pedido['id'] ?>" class="btn btn-primary btn-sm">Generar PDF</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
             </div>
-        <?php endif; ?>
+            <div class="tab-pane fade" id="pedidos-personalizados" role="tabpanel" aria-labelledby="pedidos-personalizados-tab">
+                <h2>Pedidos Personalizados</h2>
+                <?php if (empty($pedidos_personalizados)): ?>
+                    <div class="alert alert-warning text-center">No has realizado ningún pedido personalizado.</div>
+                <?php else: ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID Pedido Personalizado</th>
+                                    <th>Fecha de Entrega</th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th> <!-- Nueva columna para el botón de reporte -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($pedidos_personalizados as $pedido_personalizado): ?>
+                                    <tr>
+                                        <td><?= $pedido_personalizado['id'] ?></td>
+                                        <td><?= $pedido_personalizado['fecha_entrega'] ?></td>
+                                        <td><?= nl2br($pedido_personalizado['descripcion']) ?></td>
+                                        <td><span class="badge" style="background-color: #3d8d58; color: #fff;"><?= $pedido_personalizado['estado'] ?></span></td>
+                                        <td>
+                                            <a href="../../controller/ReporteControllerPersonalizados.php?pedido_personalizado_id=<?= $pedido_personalizado['id'] ?>" class="btn btn-primary btn-sm">Generar PDF</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
     </main>
     
     <?php include ('../partials/footer.php'); ?>

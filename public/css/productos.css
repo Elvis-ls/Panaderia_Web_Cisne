@@ -12,9 +12,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 280px;
+    width: 300px; /* Aumentar el ancho */
+    max-width: 100%; /* Asegurarse de que no exceda el ancho del contenedor padre */
     text-align: center;
     padding: 20px;
+    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
 }
 
 .producto:hover {
@@ -26,12 +28,14 @@
     font-size: 1.4em;
     margin: 10px 0;
     color: #333;
+    word-wrap: break-word; /* Permitir que el texto se ajuste */
 }
 
 .producto p {
     color: #666;
     font-size: 1em;
     margin: 10px 0;
+    word-wrap: break-word; /* Permitir que el texto se ajuste */
 }
 
 /* Estilo mejorado para las imágenes */

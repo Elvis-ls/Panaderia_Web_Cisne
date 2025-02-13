@@ -33,8 +33,15 @@ class ProductoAdminModel {
     public function eliminarProducto($id) {
         $query = "DELETE FROM productos WHERE id = ?";
         $stmt = $this->db->prepare($query);
+        if ($stmt === false) {
+            die("Error en la preparación de la consulta: " . $this->db->error);
+        }
         $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        $result = $stmt->execute();
+        if ($result === false) {
+            die("Error al ejecutar la consulta: " . $stmt->error);
+        }
+        return $result;
     }
 
     public function getProductoPorId($id) {

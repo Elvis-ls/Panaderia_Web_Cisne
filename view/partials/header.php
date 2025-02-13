@@ -2,8 +2,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-?>
 
+<<<<<<< HEAD
 <header>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,3 +45,15 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
     <p>El arte de hornear con amor</p>
 </header>
+=======
+if (isset($_SESSION['id'])) {
+    if ($_SESSION['rol_id'] == 1) {
+        include 'header_admin.php';
+    } elseif ($_SESSION['rol_id'] == 2) {
+        include 'header_user.php';
+    }
+} else {
+    include 'header_guest.php';
+}
+?>
+>>>>>>> abca5b0bf244714d987389b3021b27d11626222c

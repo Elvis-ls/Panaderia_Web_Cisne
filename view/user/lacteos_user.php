@@ -9,6 +9,9 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
+// Obtener el ID del producto si está presente en la URL
+$producto_id = isset($_GET['id']) ? $_GET['id'] : null;
+
 
 // Obtener los productos de la categoría "Panadería"
 $productos = $productoModel->getProductosPorCategoria(4); // ID de la categoría "Panadería"
