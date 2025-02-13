@@ -1,8 +1,70 @@
-.pedido-personalizado {
-    margin-top: 20px;
-    text-align: center;
+/* Estilos personalizados para la ventana modal */
+.modal-custom {
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
 }
 
-.modal-body .form-group {
+.custom-header {
+    background-color: #ffcc80;
+    color: #333;
+    border-bottom: 2px solid #ffa726;
+}
+
+.custom-title {
+    font-weight: bold;
+    color: #e65100;
+}
+
+.custom-close {
+    color: #d84315;
+    font-size: 20px;
+}
+
+.custom-body {
+    padding: 20px;
+    background-color: #fff8e1;
+}
+
+.custom-alert {
+    background-color: #ffecb3;
+    color: #6d4c41;
+    font-size: 14px;
+}
+
+.custom-group {
     margin-bottom: 15px;
+}
+
+.custom-input {
+    border-radius: 5px;
+    border: 1px solid #ff9800;
+}
+
+.custom-file {
+    border: none;
+    padding: 5px;
+}
+
+.custom-btn {
+    background-color: #ff7043;
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+
+.custom-btn:hover {
+    background-color: #d84315;
+}
+
+.custom-cancel-btn {
+    background-color: #b0bec5;
+    color: #37474f;
+    font-weight: bold;
+    border: none;
+}
+
+.custom-cancel-btn:hover {
+    background-color: #78909c;
+    color: white;
 }

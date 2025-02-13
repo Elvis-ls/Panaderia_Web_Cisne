@@ -17,6 +17,7 @@ class PDF extends FPDF {
         $this->Ln(20);
     }
 
+    
     // Pie de página
     function Footer() {
         // Posición: a 1,5 cm del final
@@ -60,7 +61,6 @@ class PDF extends FPDF {
             $this->Ln();
         }
         $this->Ln(10);
-
     }
 }
 

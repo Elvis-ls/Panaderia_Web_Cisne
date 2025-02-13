@@ -1,5 +1,5 @@
 <?php
-$pagina = 'panaderia_user';
+$pagina = 'search_results';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -9,12 +9,12 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
-// Obtener el ID del producto si está presente en la URL
-$producto_id = isset($_GET['id']) ? $_GET['id'] : null;
 
+// Obtener el término de búsqueda
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Obtener los productos de la categoría "Panadería"
-$productos = $productoModel->getProductosPorCategoria(1); // ID de la categoría "Panadería"
+// Buscar productos
+$resultados = $productoModel->buscarProductos($query);
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -24,10 +24,10 @@ $productos = $productoModel->getProductosPorCategoria(1); // ID de la categoría
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 
 <main class="main-content">
-    <h1>Panadería</h1>
+    <h1>Resultados de la búsqueda</h1>
     <div class="productos">
-        <?php if (!empty($productos)): ?>
-            <?php foreach ($productos as $producto): ?>
+        <?php if (!empty($resultados)): ?>
+            <?php foreach ($resultados as $producto): ?>
                 <div class="producto">
                     <?php $rutaImagen = '/Panaderia_Web/public/images/' . $producto['imagen']; ?>
                     <img src="<?php echo $rutaImagen; ?>" alt="<?php echo $producto['nombre']; ?>">
@@ -52,7 +52,7 @@ $productos = $productoModel->getProductosPorCategoria(1); // ID de la categoría
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No hay productos disponibles en esta categoría.</p>
+            <p>No se encontraron productos para "<?php echo htmlspecialchars($query); ?>".</p>
         <?php endif; ?>
     </div>
 </main>

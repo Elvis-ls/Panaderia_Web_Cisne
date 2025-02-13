@@ -1,5 +1,5 @@
 <?php
-$pagina = 'panaderia_user';
+$pagina = 'pasteleria_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -10,8 +10,11 @@ require_once __DIR__ . '/../../model/ProductoModel.php';
 // Crear una instancia del modelo de productos
 $productoModel = new ProductoModel($con);
 
-// Obtener los productos de la categoría "Panadería"
-$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Panadería"
+// Obtener el ID del producto si está presente en la URL
+$producto_id = isset($_GET['id']) ? $_GET['id'] : null;
+
+// Obtener los productos de la categoría "Pastelería"
+$productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría "Pastelería"
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -19,13 +22,14 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
-<!-- Incluir el archivo CSS para pedidos personalizados -->
-<link rel="stylesheet" href="/Panaderia_Web/public/css/pedido_personalizado.css">
-<!-- Incluir Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/modal.css">
 
 <main class="main-content">
-    <h1>Pastelería</h1>
+<h1 class="text-center flex-grow-1">Pastelería</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Botón para abrir la ventana modal de pedido personalizado -->
+        <button type="button" class="btn btn-secondary ms-auto" id="pedidoPersonalizadoBtn">Pedido Personalizado</button>
+    </div>
     <div class="productos">
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $producto): ?>
@@ -56,52 +60,30 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
             <p>No hay productos disponibles en esta categoría.</p>
         <?php endif; ?>
     </div>
-
-    <!-- Botón para abrir la ventana modal de pedido personalizado -->
-    <div class="pedido-personalizado">
-        <h2>¿No encuentras lo que buscas?</h2>
-        <p>Realiza un pedido personalizado:</p>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#pedidoPersonalizadoModal">Pedido Personalizado</button>
-    </div>
 </main>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
 
-<!-- Ventana modal para el pedido personalizado -->
-<div class="modal fade" id="pedidoPersonalizadoModal" tabindex="-1" role="dialog" aria-labelledby="pedidoPersonalizadoModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pedidoPersonalizadoModalLabel">Pedido Personalizado</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/Panaderia_Web/controller/PedidoPersonalizadoController.php" method="POST">
-                    <div class="form-group">
-                        <label for="nombre">Nombre del Producto:</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" id="cantidad" name="cantidad" class="form-control" min="1" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Pedido</button>
-                </form>
-            </div>
-        </div>
-    </div>
+<!-- Ventana modal personalizada -->
+<div id="pedidoPersonalizadoModal" class="modal">
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/user/pedido_personalizado.php'); ?>
 </div>
 
-<!-- Incluir Bootstrap JS y dependencias -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Incluir el archivo JavaScript -->
-<script src="/Panaderia_Web/public/js/productos.js"></script>
-<script src="/Panaderia_Web/public/js/pedido_personalizado.js"></script>
+<script>
+function incrementarCantidad(id, stock) {
+    var cantidadInput = document.getElementById('cantidad_' + id);
+    if (parseInt(cantidadInput.value) < stock) {
+        cantidadInput.value = parseInt(cantidadInput.value) + 1;
+    }
+}
+
+function decrementarCantidad(id, stock) {
+    var cantidadInput = document.getElementById('cantidad_' + id);
+    if (cantidadInput.value > 1) {
+        cantidadInput.value = parseInt(cantidadInput.value) - 1;
+    }
+}
+</script>
+
+<!-- Incluir el archivo JavaScript para la ventana modal -->
+<script src="/Panaderia_Web/public/js/modal.js"></script>

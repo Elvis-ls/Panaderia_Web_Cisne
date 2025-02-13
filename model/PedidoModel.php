@@ -10,7 +10,11 @@ class PedidoModel {
     }
 
     public function obtenerPedidos($usuario_id) {
-        $sql = "SELECT id, fecha_pedido, total, estado FROM pedidos WHERE usuario_id = ? ORDER BY fecha_pedido DESC";
+        $sql = "SELECT p.id, p.fecha_pedido, p.total, p.estado 
+                FROM pedidos p 
+                WHERE p.usuario_id = ? 
+                AND NOT EXISTS (SELECT 1 FROM pedidospersonalizados pp WHERE pp.pedido_id = p.id)
+                ORDER BY p.fecha_pedido DESC";
         $stmt = mysqli_prepare($this->con, $sql);
         if (!$stmt) {
             throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
@@ -29,8 +33,14 @@ class PedidoModel {
     }
 
     public function obtenerPedidoPorId($pedido_id) {
-        $sql = "SELECT * FROM pedidos WHERE id = ?";
+        $sql = "SELECT p.id, p.fecha_pedido, p.total, p.estado, u.nombre AS cliente 
+                FROM pedidos p 
+                JOIN usuarios u ON p.usuario_id = u.id 
+                WHERE p.id = ?";
         $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
         mysqli_stmt_bind_param($stmt, "i", $pedido_id);
         mysqli_stmt_execute($stmt);
         $resultado = mysqli_stmt_get_result($stmt);
@@ -132,5 +142,72 @@ class PedidoModel {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     }
+
+    // Método para crear un pedido personalizado
+    public function crearPedidoPersonalizado($usuario_id, $descripcion, $fecha_entrega, $total) {
+        // Crear el pedido en la tabla pedidos
+        $sql = "INSERT INTO pedidos (usuario_id, total, estado) VALUES (?, NULL, 'pendiente')";
+        $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $usuario_id);
+        mysqli_stmt_execute($stmt);
+        $pedido_id = mysqli_stmt_insert_id($stmt);
+        mysqli_stmt_close($stmt);
+
+        // Crear el pedido personalizado en la tabla pedidospersonalizados
+        $sql = "INSERT INTO pedidospersonalizados (pedido_id, descripcion, fecha_entrega) VALUES (?, ?, ?)";
+        $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
+        mysqli_stmt_bind_param($stmt, "iss", $pedido_id, $descripcion, $fecha_entrega);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        return $pedido_id;
+    }
+
+    public function obtenerPedidosPersonalizados($usuario_id) {
+        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, p.estado, p.total 
+                FROM pedidospersonalizados pp 
+                JOIN pedidos p ON pp.pedido_id = p.id 
+                WHERE p.usuario_id = ? 
+                ORDER BY pp.fecha_entrega DESC";
+        $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $usuario_id);
+        mysqli_stmt_execute($stmt);
+        $resultado = mysqli_stmt_get_result($stmt);
+
+        $pedidos_personalizados = [];
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $pedidos_personalizados[] = $fila;
+        }
+
+        mysqli_stmt_close($stmt);
+        return $pedidos_personalizados;
+    }
+    
+    public function obtenerPedidoPersonalizadoPorId($pedido_personalizado_id) {
+        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, pp.pedido_id, p.estado, p.total 
+                FROM pedidospersonalizados pp 
+                JOIN pedidos p ON pp.pedido_id = p.id 
+                WHERE pp.id = ?";
+        $stmt = mysqli_prepare($this->con, $sql);
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
+        }
+        mysqli_stmt_bind_param($stmt, "i", $pedido_personalizado_id);
+        mysqli_stmt_execute($stmt);
+        $resultado = mysqli_stmt_get_result($stmt);
+        $pedido_personalizado = mysqli_fetch_assoc($resultado);
+        mysqli_stmt_close($stmt);
+        return $pedido_personalizado;
+    }
+
 }
 ?>

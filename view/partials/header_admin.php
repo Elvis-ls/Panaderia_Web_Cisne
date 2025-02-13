@@ -14,16 +14,8 @@
             </div>
             <div class="col-md-8 text-center text-md-end">
                 <div class="header-extras d-flex justify-content-end align-items-center">
-                    <!-- Mostrar carrito de compras y barra de búsqueda para rol 2 -->
-                    <div class="position-relative me-3">
-                        <a href="/Panaderia_Web/view/user/carrito.php" class="btn btn-outline-light" style="border-color: #ffffff; color: #ffffff;">
-                            <i class="fas fa-shopping-cart"></i>
-                            <?php if (isset($_SESSION['total_productos']) && $_SESSION['total_productos'] > 0): ?>
-                                <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?php echo $_SESSION['total_productos']; ?></span>
-                            <?php endif; ?>
-                        </a>
-                    </div>
-                    <form class="d-flex" action="/Panaderia_Web/controller/SearchController.php" method="GET">
+                    <!-- Mostrar barra de búsqueda para rol 1 -->
+                    <form class="d-flex me-3" action="/Panaderia_Web/controller/SearchController.php" method="GET">
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query" style="background-color: #ffffff; color: #000000;">
                         <button class="btn btn-outline-light" type="submit" style="border-color: #ffffff; color: #ffffff;">Buscar</button>
                     </form>
