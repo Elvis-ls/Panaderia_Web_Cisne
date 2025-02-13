@@ -13,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="d-flex justify-content-between align-items-center">
         <div class="logo">
             <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería">
-            <h1>Panadería Don Juan</h1>
+            <h1>El Cisne Panadería y Pastelería</h1>
         </div>
         
         

@@ -1,12 +1,20 @@
 <?php $pagina = 'pasteleria'; ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav.php'); ?>
-
-<!-- Incluir el nuevo archivo CSS -->
-<link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
-<script src="/Panaderia_Web/public/js/animacion_menu.js"></script>
-
-<main class="main-content">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panaderia</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
+    <script src="/Panaderia_Web/public/js/animacion_menu.js"></script>
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav.php'); ?>
+    <main class="main-content">
     <h1>Pastelería</h1>
     <div class="productos">
         <?php if (!empty($productos)): ?>
@@ -24,5 +32,6 @@
         <?php endif; ?>
     </div>
 </main>
-
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
+</body>
+</html>

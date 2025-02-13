@@ -39,7 +39,7 @@ $stmt->close();
                     <form action="/Panaderia_Web/controller/CarritoController.php" method="POST" class="d-inline">
                         <input type="hidden" name="carrito_id" value="<?php echo $producto['carrito_id']; ?>">
                         <button type="submit" name="accion" value="eliminar" class="btn btn-danger">Eliminar</button>
-                    </form>.
+                    </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

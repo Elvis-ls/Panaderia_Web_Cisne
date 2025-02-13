@@ -14,8 +14,8 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Encabezado con logo y bienvenida -->
     <div class="header-container">
         <div class="logo text-center">
-            <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería">
-            <h1>Panadería Don Juan</h1>
+            <img src="/Panaderia_Web/public/images/logo.png" alt="Logo Panadería">
+            <h1>El Cisne Panadería y Pastelería</h1>
             <br>
         </div>
         

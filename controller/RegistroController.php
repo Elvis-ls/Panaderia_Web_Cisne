@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/conexion.php';
+require_once '../config/conexion.php'; // Asegúrate de que la ruta es correcta
 require_once '../model/UsuarioModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -10,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
 
-    $usuarioModel = new UsuarioModel();
+    // Crear una instancia de UsuarioModel pasando la conexión
+    $usuarioModel = new UsuarioModel($con);
 
     // Verificar si el correo ya está registrado
     if ($usuarioModel->existeCorreo($correo)) {

@@ -1,0 +1,60 @@
+/* Estilos para la sección de Gestión de Notificaciones */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f4ee;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* Tabla de notificaciones */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, 
+.table td {
+    border: 1px solid #c79b7b;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: #5a3e2b;
+}
+
+.table th {
+    background-color: #8d583d;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f4ee;
+}
+
+.table tbody tr:hover {
+    background-color: #f2e5dc;
+}
+
+/* Imágenes en la tabla */
+.table img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Alinear botón Eliminar a la derecha */
+.text-right {
+    text-align: right;
+}

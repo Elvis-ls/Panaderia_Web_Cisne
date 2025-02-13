@@ -13,7 +13,7 @@
             <i class="fas fa-cookie"></i> Galletería
         </a>
         <a href="/Panaderia_Web/inicio.php?action=lacteos" class="<?php echo ($pagina == 'lacteos') ? 'active' : ''; ?>">
-            <i class="fas fa-coffee"></i> Lácteos
+            <i class="fas fa-glass-whiskey"></i> Lácteos
         </a>
         <a href="/Panaderia_Web/view/guest/ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">
             <i class="fas fa-info-circle"></i> Ayuda

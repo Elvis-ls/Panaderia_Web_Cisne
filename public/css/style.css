@@ -13,6 +13,7 @@ body {
 header, nav {
     transition: transform 0.3s ease-in-out;
 }
+
 header {
     background: #8d583d;
     color: #fff;
@@ -38,74 +39,69 @@ header .logo img {
     margin-right: 10px;
 }
 
-header h1 {
-    font-family: 'Lora', serif;
-    font-size: 1.8rem;
-    margin: 0;
-}
 
+/* Estilos generales para el nav */
 nav {
     background: #c79b7b;
-    display: flex;
-    justify-content: center;
     padding: 10px 0;
     width: 100%;
     box-sizing: border-box;
-    white-space: nowrap;
-    flex-wrap: nowrap; /* Asegura que todo quede en una sola línea */
-    overflow-x: auto; /* Permite desplazamiento si hay muchos elementos */
 }
 
-nav {
-    width: 100%;
-    max-width: 100vw;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px; /* Reduce el margen si es necesario */
-    font-weight: 600;
-    transition: color 0.3s;
-    white-space: nowrap; /* Evita que los textos se dividan */
-    flex-shrink: 0; /* Evita que los elementos se achiquen */
-}
-
+/* Contenedor flexible para los enlaces */
 .nav-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: nowrap; /* Asegura que los enlaces no bajen */
-    width: 100%;
-    overflow-x: auto; /* Agrega desplazamiento si es necesario */
+    justify-content: space-around; /* Distribuye los enlaces de manera uniforme */
+    flex-wrap: wrap; /* Permite que los enlaces se envuelvan en varias líneas si no caben */
+    gap: 10px; /* Espacio entre los enlaces */
 }
 
-
-nav a {
+/* Estilos para los enlaces */
+.nav-container a {
     color: #fff;
     text-decoration: none;
-    margin: 0 10px;
     font-weight: 600;
-    transition: color 0.3s;
+    padding: 10px 15px;
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-    flex-shrink: 0; /* Evita que los elementos se reduzcan */
+    flex-shrink: 0; /* Evita que los enlaces se reduzcan */
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
 }
 
-nav a.active {
-    color: #fff;
-    font-weight: bold;
+/* Estilo para el enlace activo */
+.nav-container a.active {
     background-color: #8d583d;
-    border-radius: 5px;
-    padding: 5px 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-nav a:hover {
-    color: #f8f4ee;
-}
-nav::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento en Chrome y Safari */
+/* Asegurar que los enlaces del menú principal tengan el mismo estilo */
+.nav-container a {
+    display: flex;
+    align-items: center; /* Alinea el ícono y el texto verticalmente */
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
 }
 
+/* Estilo para el enlace activo */
+.nav-container a.active {
+    background-color: #8d583d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto hover para los enlaces */
+.nav-container a:hover {
+    background-color: #8d583d;
+    color: #f8f4ee;
+}
+
+/* Estilos para los íconos */
+.nav-container a i {
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
 .main-content {
     text-align: center;
     padding: 20px;
@@ -252,3 +248,64 @@ footer .social-icons a {
     padding: 15px;
     font-size: 1rem;
 }
+
+@media (max-width: 768px) {
+    .nav-container {
+        justify-content: flex-start; /* Alinea los enlaces al inicio en pantallas pequeñas */
+        padding: 10px;
+    }
+
+    .nav-container a {
+        padding: 8px 12px; /* Reduce el padding en pantallas pequeñas */
+    }
+}
+/* Estilos para el contenedor del dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block; /* Asegura que el dropdown se comporte como un bloque en línea */
+}
+
+/* Estilos para el botón del dropdown */
+.dropdown-toggle {
+    display: flex;
+    align-items: center; /* Alinea el ícono y el texto verticalmente */
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Estilos para el submenú */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Se muestra justo debajo del botón del menú */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none; /* Oculto por defecto */
+    min-width: 200px;
+    z-index: 1000; /* Asegura que el menú desplegable esté por encima de otros elementos */
+}
+
+/* Estilos para mostrar el submenú cuando el menú está activo */
+.dropdown:hover .dropdown-menu {
+    display: block; /* Muestra el submenú */
+}
+
+/* Estilos para los elementos dentro del submenú */
+.dropdown-menu a {
+    color: #5a3e2b;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #8d583d;
+    color: #f8f4ee;
+}
+

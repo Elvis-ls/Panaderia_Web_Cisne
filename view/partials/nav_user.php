@@ -13,19 +13,19 @@
             <i class="fas fa-cookie"></i> Galletería
         </a>
         <a href="/Panaderia_Web/view/user/lacteos_user.php" class="<?php echo ($pagina == 'lacteos_user') ? 'active' : ''; ?>">
-            <i class="fas fa-coffee"></i> Lácteos
+            <i class="fas fa-glass-whiskey"></i> Lácteos
         </a>
         <a href="/Panaderia_Web/view/user/ayuda.php" class="<?php echo ($pagina == 'ayuda') ? 'active' : ''; ?>">
             <i class="fas fa-info-circle"></i> Ayuda
-        </a>
-        <a href="/Panaderia_Web/view/user/perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
-            <i class="fas fa-user"></i> Mi perfil
         </a>
         <a href="/Panaderia_Web/view/user/pedidos.php" class="<?php echo ($pagina == 'pedidos') ? 'active' : ''; ?>">
             <i class="fas fa-box"></i> Mis pedidos
         </a>
         <a href="/Panaderia_Web/view/user/notificaciones.php" class="<?php echo ($pagina == 'notificaciones') ? 'active' : ''; ?>">
             <i class="fas fa-bell"></i> Notificaciones
+        </a>
+        <a href="/Panaderia_Web/view/user/perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
+            <i class="fas fa-user"></i> Mi perfil
         </a>
         <a href="/Panaderia_Web/controller/LogoutController.php">
             <i class="fas fa-sign-out-alt"></i> Cerrar sesión

@@ -1,5 +1,5 @@
 <?php
-$pagina = 'panaderia_user';
+$pagina = 'pasteleria_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
@@ -21,8 +21,7 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 <!-- Incluir el archivo CSS para pedidos personalizados -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/pedido_personalizado.css">
-<!-- Incluir Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 
 <main class="main-content">
     <h1>Pastelería</h1>
@@ -98,10 +97,10 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
     </div>
 </div>
 
-<!-- Incluir Bootstrap JS y dependencias -->
+<!-- Elimina la inclusión de Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+<!-- Incluye solo el JavaScript de Bootstrap para el modal -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Incluir el archivo JavaScript -->
-<script src="/Panaderia_Web/public/js/productos.js"></script>
-<script src="/Panaderia_Web/public/js/pedido_personalizado.js"></script>

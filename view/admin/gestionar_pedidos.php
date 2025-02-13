@@ -51,6 +51,8 @@ $pedidos = $adminController->getPedidos();
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Pedidos.css">
+
 
 <main class="main-content">
     <div class="container">
@@ -68,12 +70,12 @@ $pedidos = $adminController->getPedidos();
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID Pedido</th>
                     <th>Usuario</th>
                     <th>Fecha del Pedido</th>
                     <th>Estado</th>
                     <th>Total</th>
-                    <th>Acciones</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,20 +86,16 @@ $pedidos = $adminController->getPedidos();
                             <td><?php echo $pedido['nombre_usuario']; ?></td>
                             <td><?php echo $pedido['fecha_pedido']; ?></td>
                             <td>
-                                <form action="gestionar_pedidos.php" method="POST" class="form-inline">
-                                    <input type="hidden" name="id" value="<?php echo $pedido['id']; ?>">
-                                    <select name="estado" class="form-control">
-                                        <option value="pendiente" <?php echo ($pedido['estado'] == 'pendiente') ? 'selected' : ''; ?>>Pendiente</option>
-                                        <option value="entregado" <?php echo ($pedido['estado'] == 'entregado') ? 'selected' : ''; ?>>Entregado</option>
-                                    </select>
-                                    <button type="submit" name="actualizarEstado" class="btn btn-primary ml-2">Actualizar</button>
-                                </form>
+                                <span class="estado-pedido"><?php echo ucfirst($pedido['estado']); ?></span>
+                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"       data-target="#actualizarPedidoModal" data-id="<?php echo $pedido['id'] ; ?>">
+                                    <i class="fas fa-edit"></i>
+                                </button>
                             </td>
                             <td><?php echo $pedido['total']; ?></td>
                             <td>
                                 <!-- Botón para eliminar el pedido -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="<?php echo $pedido['id']; ?>">
-                                    <i class="fas fa-trash"></i> Eliminar
+                                    <i class="fas fa-trash"></i>  Eliminar
                                 </button>
                             </td>
                         </tr>
@@ -119,9 +117,6 @@ $pedidos = $adminController->getPedidos();
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 ¿Estás seguro de que deseas eliminar este pedido?
@@ -129,6 +124,36 @@ $pedidos = $adminController->getPedidos();
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <a id="confirmarEliminarBtn" href="#" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para actualizar el pedido -->
+<div class="modal fade" id="actualizarPedidoModal" tabindex="-1" role="dialog" aria-labelledby="actualizarPedidoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actualizarPedidoModalLabel">Actualizar Pedido</h5>
+            </div>
+            <div class="modal-body">
+                <form action="gestionar_pedidos.php" method="POST">
+                    <input type="hidden" name="id" id="pedidoId">
+                    <div class="form-group">
+                        <label for="estado">Estado del Pedido</label>
+                        <select name="estado" id="estado" class="form-control">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="entregado">Entregado</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="text-center"> <!-- Centrar el botón -->
+                        <button type="submit" name="actualizarEstado" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -152,6 +177,18 @@ $pedidos = $adminController->getPedidos();
 
             // Actualizar el enlace de eliminación con el ID del pedido
             eliminarBtn.attr('href', 'gestionar_pedidos.php?action=eliminarPedido&id=' + idPedidoAEliminar);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Cuando se abre el modal de actualización, capturar el ID del pedido
+        $('#actualizarPedidoModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Botón que activó el modal
+            var idPedido = button.data('id'); // Extraer el ID del pedido
+            var modal = $(this);
+            modal.find('.modal-body #pedidoId').val(idPedido); // Asignar el ID al campo oculto
         });
     });
 </script>

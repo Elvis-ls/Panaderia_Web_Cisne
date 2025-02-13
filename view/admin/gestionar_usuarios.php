@@ -1,4 +1,6 @@
+
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -38,11 +40,10 @@ if (isset($_GET['nombre'])) {
 }
 ?>
 
-<!-- Incluir jQuery antes de Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Usuarios.css">
+
 
 <?php $pagina = 'gestUsuarios'; ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
@@ -113,9 +114,6 @@ if (isset($_GET['nombre'])) {
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 ¿Estás seguro de que deseas eliminar este usuario?
@@ -128,7 +126,10 @@ if (isset($_GET['nombre'])) {
     </div>
 </div>
 
-
+<!-- Incluir jQuery antes de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function() {

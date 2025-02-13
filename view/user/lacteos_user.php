@@ -1,5 +1,5 @@
 <?php
-$pagina = 'panaderia_user';
+$pagina = 'lacteos_user';
 
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
