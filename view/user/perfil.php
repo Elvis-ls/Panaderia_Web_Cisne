@@ -30,36 +30,37 @@ $usuario = $usuarioModel->obtenerUsuario($usuario_id);
 <body>
     <?php include ('../partials/header.php'); ?>
     <?php include ('../partials/nav_user.php'); ?>
-
-    <main class="main-content">
-        <h1>Mi Perfil</h1>
-        
-        <form id="perfilForm" action="../../controller/UserController.php" method="POST">
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $usuario['nombre'] ?>" readonly>
-                <span class="edit-icon" onclick="editField('nombre')">&#9998;</span>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="correo" value="<?= $usuario['correo'] ?>" readonly>
-                <span class="edit-icon" onclick="editField('correo')">&#9998;</span>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" name="telefono" value="<?= $usuario['telefono'] ?>" readonly maxlength="10" pattern="\d{10}" oninput="validatePhoneNumber(this)">
-                <span class="edit-icon" onclick="editField('telefono')">&#9998;</span>
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-                <textarea class="form-control" id="direccion" name="direccion" readonly><?= $usuario['direccion'] ?></textarea>
-                <span class="edit-icon" onclick="editField('direccion')">&#9998;</span>
-            </div>
-            <button type="button" class="btn btn-primary save-button" id="saveButton" onclick="showConfirmModal()">Guardar Cambios</button>
-        </form>
-    </main>
     
-    <?php include ('../partials/footer.php'); ?>
+    <center>
+        <main class="main-content">
+            <h1>Mi Perfil</h1>
+            
+            <form id="perfilForm" action="../../controller/UserController.php" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $usuario['nombre'] ?>" readonly>
+                    <span class="edit-icon" onclick="editField('nombre')">&#9998;</span>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" value="<?= $usuario['correo'] ?>" readonly>
+                    <span class="edit-icon" onclick="editField('correo')">&#9998;</span>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="<?= $usuario['telefono'] ?>" readonly maxlength="10" pattern="\d{10}" oninput="validatePhoneNumber(this)">
+                    <span class="edit-icon" onclick="editField('telefono')">&#9998;</span>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+                    <textarea class="form-control" id="direccion" name="direccion" readonly><?= $usuario['direccion'] ?></textarea>
+                    <span class="edit-icon" onclick="editField('direccion')">&#9998;</span>
+                </div>
+                <button type="button" class="btn btn-primary save-button" id="saveButton" onclick="showConfirmModal()">Guardar Cambios</button>
+            </form>
+        </main>
+    </center>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -86,4 +87,5 @@ $usuario = $usuarioModel->obtenerUsuario($usuario_id);
         </div>
     </div>
 </body>
+<?php include ('../partials/footer.php'); ?>
 </html>

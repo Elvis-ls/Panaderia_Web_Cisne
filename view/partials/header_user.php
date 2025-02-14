@@ -3,12 +3,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/header.css">
     
     <div class="container">
         <div class="row align-items-center py-3">
             <div class="col-md-4 text-center text-md-start">
                 <div class="logo">
-                    <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería" class="img-fluid" style="max-width: 150px;">
+                    <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería" class="img-fluid"">
                     <h1 class="d-inline-block align-middle ms-3">Panadería Don Juan</h1>
                 </div>
             </div>
@@ -16,7 +17,7 @@
                 <div class="header-extras d-flex justify-content-end align-items-center">
                     <!-- Mostrar carrito de compras y barra de búsqueda para rol 2 -->
                     <div class="position-relative me-3">
-                        <a href="/Panaderia_Web/view/user/carrito.php" class="btn btn-outline-light" style="border-color: #ffffff; color: #ffffff;">
+                        <a href="/Panaderia_Web/view/user/carrito.php" class="btn btn-outline-light">
                             <i class="fas fa-shopping-cart"></i>
                             <?php if (isset($_SESSION['total_productos']) && $_SESSION['total_productos'] > 0): ?>
                                 <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?php echo $_SESSION['total_productos']; ?></span>
@@ -24,8 +25,8 @@
                         </a>
                     </div>
                     <form class="d-flex" action="/Panaderia_Web/controller/SearchController.php" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query" style="background-color: #ffffff; color: #000000;">
-                        <button class="btn btn-outline-light" type="submit" style="border-color: #ffffff; color: #ffffff;">Buscar</button>
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query" >
+                        <button class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
                 </div>
             </div>

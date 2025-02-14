@@ -35,7 +35,6 @@ class UsuarioModel {
         $tablasRelacionadas = [
             'pedidos' => 'usuario_id',
             'recomendaciones' => 'usuario_id',
-            'notificaciones' => 'usuario_id',
             'carrito' => 'usuario_id'
         ];
     
@@ -60,7 +59,6 @@ class UsuarioModel {
     
         return true;
     }
-
     // Función para verificar si el correo ya existe
     public function existeCorreo($correo) {
         $query = "SELECT COUNT(*) FROM usuarios WHERE correo = ?";

@@ -48,6 +48,10 @@ $(document).ready(function() {
     });
 
     $('.realizar-pedido button').on('click', function() {
+        const $button = $(this);
+        $button.prop('disabled', true); // Deshabilitar el botón
+        $button.text('Procesando...'); // Cambiar el texto del botón
+
         $.ajax({
             url: '/Panaderia_Web/controller/CarritoController.php',
             method: 'POST',
@@ -55,9 +59,13 @@ $(document).ready(function() {
                 accion: 'realizar_pedido'
             },
             success: function(response) {
-                alert('Pedido realizado con éxito');
-                $('.cart-dropdown').hide();
-                location.reload(); // Recargar la página para actualizar el carrito
+                // Redirigir a la sección de "Mis Pedidos"
+                window.location.href = '/Panaderia_Web/view/user/pedidos.php';
+            },
+            error: function() {
+                alert('Error al realizar el pedido.');
+                $button.prop('disabled', false); // Habilitar el botón nuevamente en caso de error
+                $button.text('Realizar Pedido'); // Restaurar el texto del botón
             }
         });
     });
@@ -70,4 +78,3 @@ $(document).ready(function() {
         $('#total-pedido').text('$' + totalPedido.toFixed(2));
     }
 });
-

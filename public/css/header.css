@@ -1,40 +1,84 @@
+/* Estilo General del Header */
+header {
+    background-color: #fff5e6;  /* Fondo suave y claro */
+    border-bottom: 2px solid #ffcc00;  /* Línea inferior elegante */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 20px 0;
+    position: relative;
+    z-index: 100;
+}
+
+/* Logo y Título */
+.logo img {
+    max-width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+.logo h1 {
+    color: #8d583d;
+    font-family: 'Lora', serif;
+    font-size: 2.2rem;
+    margin-left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Extras del Header (Carrito, Buscar, Sesión) */
 .header-extras {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .header-extras .btn-outline-light {
+    color: #8d583d;
+    border-color: #8d583d;
     transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-extras .btn-outline-light:hover {
-    color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
-    border-color: #ffcc00; /* Cambiar a un color diferente al pasar el mouse */
+    color: #ffcc00;
+    border-color: #ffcc00;
+    background-color: transparent;
 }
 
 .header-extras .badge {
-    font-size: 0.8em;
-    padding: 0.5em;
-}
-
-.header-extras .btn {
-    margin-left: 10px; /* Separar los botones */
+    background-color: #ffcc00;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 0.3em 0.6em;
+    border-radius: 50%;
 }
 
 .header-extras .position-relative {
-    margin-right: 20px; /* Separar el icono del carrito */
+    margin-right: 20px;
 }
 
 .header-extras form {
-    margin-left: 20px; /* Separar la barra de búsqueda */
+    margin-right: 20px;
 }
-h1 {
+
+.header-extras .form-control {
+    border: 1px solid #8d583d;
+    border-radius: 20px;
+    padding: 0.375rem 1.25rem;
+    transition: border-color 0.3s ease;
+}
+
+.header-extras .form-control:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+/* Texto Bajo el Header */
+header p {
     color: #8d583d;
-    font-family: 'Lora', serif;
-    font-size: 2.2rem;
-    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    margin-top: 10px;
     text-align: center;
 }

@@ -1,60 +1,59 @@
 /* Estilos para la sección de Gestión de Notificaciones */
 .main-content {
     flex: 1;
-    padding: 20px;
-    background-color: #f8f4ee;
-}
-
-.container {
+    background-color:  #fff;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 100vh;     
 }
 
-
-
-
-/* Tabla de notificaciones */
-.table {
+/* Estilos para la tabla de gestión de usuarios con divisiones en encabezados */
+table.table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.table th, 
-.table td {
-    border: 1px solid #c79b7b;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
+table.table th,
+table.table td {
+    padding: 15px;
+    text-align: center; /* Centrar horizontalmente */
+    vertical-align: middle; /* Centrar verticalmente */
     color: #5a3e2b;
+    border: 1px solid #d3c6b8; /* Añade bordes suaves */
 }
 
-.table th {
-    background-color: #8d583d;
+table.table th {
+    background-color: #c79b7b;
     color: #fff;
-    font-weight: bold;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid #a87a5e; /* Destaca la división del encabezado */
 }
 
-.table tbody tr:nth-child(even) {
+table.table tr:nth-child(even) {
     background-color: #f8f4ee;
 }
 
-.table tbody tr:hover {
-    background-color: #f2e5dc;
+table.table tr:hover {
+    background-color: #eae2da;
 }
 
-/* Imágenes en la tabla */
-.table img {
-    max-width: 100px;
-    height: auto;
+table.table td button.btn-danger {
+    background-color: #8d583d;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Alinear botón Eliminar a la derecha */
-.text-right {
-    text-align: right;
+table.table td button.btn-danger:hover {
+    background-color: #732e1c;
 }
+
