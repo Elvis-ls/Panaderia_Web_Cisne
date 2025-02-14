@@ -33,6 +33,9 @@ if (!isset($_SESSION['id'])) {
     
     <!-- Carrito flotante -->
     <?php include ('../partials/carrito.php'); ?>
+
+    <!-- Recomendaciones flotantes -->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/recomendaciones.php'); ?>
     
     <main class="main-content">
         <h1>Bienvenidos a nuestra Panadería</h1>

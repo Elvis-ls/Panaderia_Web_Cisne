@@ -4,6 +4,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
     <link rel="stylesheet" href="/Panaderia_Web/public/css/header.css">
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/recomendaciones.css">
     
     <div class="container">
         <div class="row align-items-center py-3">
@@ -28,6 +29,7 @@
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query" >
                         <button class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
+                    <p class="badge text-white ms-3" style="font-size: 1.2em; background-color: #d4a373;">Usuario</p>
                 </div>
             </div>
         </div>

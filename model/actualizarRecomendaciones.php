@@ -11,6 +11,12 @@ function actualizarRecomendacionesParaTodosLosUsuarios() {
     while ($rowUsuario = $resultUsuarios->fetch_assoc()) {
         $usuario_id = $rowUsuario['usuario_id'];
 
+        // Eliminar recomendaciones existentes para el usuario
+        $queryEliminarRecomendaciones = "DELETE FROM recomendados WHERE usuario_id = ?";
+        $stmtEliminarRecomendaciones = $con->prepare($queryEliminarRecomendaciones);
+        $stmtEliminarRecomendaciones->bind_param('i', $usuario_id);
+        $stmtEliminarRecomendaciones->execute();
+
         // Obtener productos que están en dos o más pedidos del usuario
         $queryProductos = "
             SELECT dp.producto_id, p.nombre, p.precio, p.imagen, COUNT(dp.producto_id) as num_pedidos
@@ -29,21 +35,18 @@ function actualizarRecomendacionesParaTodosLosUsuarios() {
 
         while ($rowProducto = $resultProductos->fetch_assoc()) {
             $producto_id = $rowProducto['producto_id'];
-            $nombre = $rowProducto['nombre'];
-            $precio = $rowProducto['precio'];
-            $imagen = $rowProducto['imagen'];
             $num_pedidos = $rowProducto['num_pedidos'];
 
-            // Insertar en la tabla de notificaciones
-            $mensaje = "El producto $nombre ha sido pedido $num_pedidos veces.";
-            $queryNotificacion = "
-                INSERT INTO notificaciones (mensaje, imagen)
-                VALUES (?, ?)
+            // Insertar en la tabla de recomendaciones
+            $queryRecomendacion = "
+                INSERT INTO recomendados (usuario_id, producto_id, num_pedidos)
+                VALUES (?, ?, ?)
+                ON DUPLICATE KEY UPDATE num_pedidos = VALUES(num_pedidos)
             ";
 
-            $stmtNotificacion = $con->prepare($queryNotificacion);
-            $stmtNotificacion->bind_param('ss', $mensaje, $imagen);
-            $stmtNotificacion->execute();
+            $stmtRecomendacion = $con->prepare($queryRecomendacion);
+            $stmtRecomendacion->bind_param('iii', $usuario_id, $producto_id, $num_pedidos);
+            $stmtRecomendacion->execute();
         }
     }
 }

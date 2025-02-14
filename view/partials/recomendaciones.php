@@ -1,7 +1,7 @@
-<div class="recomendaciones-icon-wrapper position-fixed" style="top: 35vh; left: 0; width: 55px; height: 50px; background-color: #000; border-right: 1px solid #ccc; border-top-right-radius: 5px; border-bottom-right-radius: 5px; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+<div class="recomendaciones-icon-wrapper position-fixed" style="top: 35vh; left: 0; width: 55px; height: 50px; background-color: #212529; border-right: 1px solid #ccc; border-top-right-radius: 5px; border-bottom-right-radius: 5px; display: flex; align-items: center; justify-content: center; z-index: 9999;">
     <i class="fas fa-star" id="recomendaciones-icon" style="cursor: pointer; color: #FFD700; font-size: 28px;"></i>
     <span id="recomendaciones-count" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="font-size: 1em;"></span>
-    <div id="recomendaciones-list" class="dropdown-menu" style="display: none; position: absolute; top: 60px; left: 0; z-index: 9999;">
+    <div id="recomendaciones-list" class="recomendaciones-dropdown" style="display: none; position: absolute; top: 0; left: 60px; z-index: 9999;">
         <!-- Aquí se cargarán las recomendaciones -->
     </div>
 </div>
@@ -35,14 +35,20 @@ $(document).ready(function() {
                 var lista = $('#recomendaciones-list');
                 var count = $('#recomendaciones-count');
                 lista.empty();
+                lista.append('<h5 class="recomendaciones-titulo">Recomendaciones</h5>');
                 count.text(recomendaciones.length);
                 recomendaciones.forEach(function(producto) {
-                    lista.append('<div class="dropdown-item">' +
-                                 '<img src="/Panaderia_Web/public/images/' + producto.imagen + '" alt="' + producto.nombre + '" style="width: 50px; height: 50px; margin-right: 10px;">' +
-                                 '<span>' + producto.nombre + ' - $' + producto.precio + '</span>' +
-                                 '<input type="number" id="cantidad_' + producto.producto_id + '" value="1" min="1" max="10" style="width: 50px; margin-right: 10px;">' +
-                                 '<button class="btn btn-primary btn-sm float-right" onclick="agregarAlCarrito(' + producto.producto_id + ')">Agregar</button>' +
-                                 '<button class="btn btn-danger btn-sm float-right" onclick="eliminarRecomendacion(' + producto.producto_id + ')">Eliminar</button>' +
+                    lista.append('<div class="recomendacion-item">' +
+                                 '<img src="/Panaderia_Web/public/images/' + producto.imagen + '" alt="' + producto.nombre + '" class="recomendacion-img">' +
+                                 '<div class="recomendacion-info">' +
+                                 '<span class="recomendacion-nombre">' + producto.nombre + '</span>' +
+                                 '<span class="recomendacion-precio">$' + producto.precio + '</span>' +
+                                 '<input type="number" id="cantidad_' + producto.producto_id + '" value="1" min="1" max="10" class="recomendacion-cantidad">' +
+                                 '<div class="recomendacion-buttons">' +
+                                 '<button class="btn btn-primary btn-sm" onclick="agregarAlCarrito(' + producto.producto_id + ')">Agregar</button>' +
+                                 '<button class="btn btn-danger btn-sm" onclick="eliminarRecomendacion(' + producto.producto_id + ')">Eliminar</button>' +
+                                 '</div>' +
+                                 '</div>' +
                                  '</div>');
                 });
             },
