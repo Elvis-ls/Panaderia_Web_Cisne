@@ -144,7 +144,7 @@ class PedidoModel {
     }
 
     // Método para crear un pedido personalizado
-    public function crearPedidoPersonalizado($usuario_id, $descripcion, $fecha_entrega, $total) {
+    public function crearPedidoPersonalizado($usuario_id, $descripcion, $fecha_entrega, $imagen_path) {
         // Crear el pedido en la tabla pedidos
         $sql = "INSERT INTO pedidos (usuario_id, total, estado) VALUES (?, NULL, 'pendiente')";
         $stmt = mysqli_prepare($this->con, $sql);
@@ -157,12 +157,12 @@ class PedidoModel {
         mysqli_stmt_close($stmt);
 
         // Crear el pedido personalizado en la tabla pedidospersonalizados
-        $sql = "INSERT INTO pedidospersonalizados (pedido_id, descripcion, fecha_entrega) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO pedidospersonalizados (pedido_id, descripcion, fecha_entrega, imagen_path) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($this->con, $sql);
         if (!$stmt) {
             throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->con));
         }
-        mysqli_stmt_bind_param($stmt, "iss", $pedido_id, $descripcion, $fecha_entrega);
+        mysqli_stmt_bind_param($stmt, "isss", $pedido_id, $descripcion, $fecha_entrega, $imagen_path);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
@@ -170,7 +170,7 @@ class PedidoModel {
     }
 
     public function obtenerPedidosPersonalizados($usuario_id) {
-        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, p.estado, p.total 
+        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, pp.imagen_path, p.estado, p.total 
                 FROM pedidospersonalizados pp 
                 JOIN pedidos p ON pp.pedido_id = p.id 
                 WHERE p.usuario_id = ? 
@@ -193,7 +193,7 @@ class PedidoModel {
     }
     
     public function obtenerPedidoPersonalizadoPorId($pedido_personalizado_id) {
-        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, pp.pedido_id, p.estado, p.total 
+        $sql = "SELECT pp.id, pp.descripcion, pp.fecha_entrega, pp.pedido_id, pp.imagen_path, p.estado, p.total 
                 FROM pedidospersonalizados pp 
                 JOIN pedidos p ON pp.pedido_id = p.id 
                 WHERE pp.id = ?";

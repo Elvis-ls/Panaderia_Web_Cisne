@@ -1,3 +1,15 @@
+<?php
+$pagina = 'search_results';
+session_start();
+require_once __DIR__ . '/../../model/carrito_functions.php';
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['id'])) {
+    header("Location: ../../view/guest/login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +26,7 @@
         <div class="container">
             <h1>No se encontraron resultados</h1>
             <p>Lo sentimos, no se encontraron resultados para su búsqueda.</p>
-            <a href="/Panaderia_Web/view/user/pedidos.php" class="btn btn-primary">Volver a Pedidos</a>
+            <a href="/Panaderia_Web/view/user/inicio.php" class="btn btn-primary">Volver a Inicio</a>
         </div>
     </main>
 

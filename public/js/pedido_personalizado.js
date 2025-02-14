@@ -5,6 +5,7 @@ function incrementarCantidad(id, stock) {
     }
 }
 
+
 function decrementarCantidad(id, stock) {
     var cantidadInput = document.getElementById('cantidad_' + id);
     if (cantidadInput.value > 1) {

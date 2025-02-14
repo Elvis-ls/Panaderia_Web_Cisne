@@ -28,9 +28,9 @@
                 <i class="fas fa-chart-bar"></i> Generar Reportes
             </a>
             <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
-                <li><a class="dropdown-item" href="/Panaderia_Web/view/admin/reportes_notificaciones.php">Reportes de Notificaciones</a></li>
-                <li><a class="dropdown-item" href="/Panaderia_Web/view/admin/reportes_productos.php">Reportes de Productos</a></li>
-                <li><a class="dropdown-item" href="/Panaderia_Web/view/admin/reportes_pedidos.php">Reportes de Pedidos</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reporteNotificacionesModal">Reportes de Notificaciones</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reporteProductosModal">Reportes de Productos</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reportePedidosModal">Reportes de Pedidos</a></li>
             </ul>
         </div>
         <a href="perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
@@ -41,3 +41,8 @@
         </a>
     </div>
 </nav>
+
+<!-- Incluir las ventanas modales -->
+<?php include(__DIR__ . '/../admin/reporte_notificaciones_modal.php'); ?>
+<?php include(__DIR__ . '/../admin/reporte_productos_modal.php'); ?>
+<?php include(__DIR__ . '/../admin/reporte_pedidos_modal.php'); ?>

@@ -1,6 +1,13 @@
 <?php
 $pagina = 'search_results';
+session_start();
+require_once __DIR__ . '/../../model/carrito_functions.php';
 
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['id'])) {
+    header("Location: ../../view/guest/login.php");
+    exit;
+}
 // Incluir el archivo de configuración para la conexión a la base de datos
 require_once __DIR__ . '/../../config/conexion.php';
 
@@ -16,6 +23,7 @@ $query = isset($_GET['query']) ? $_GET['query'] : '';
 // Buscar productos
 $resultados = $productoModel->buscarProductos($query);
 ?>
+
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_user.php'); ?>
