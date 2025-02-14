@@ -1,8 +1,11 @@
 /* Estilos para la sección de Mis Pedidos */
 .main-content {
     flex: 1;
-    padding: 20px;
-    background-color: #f8f4ee;
+    background-color:  #fff;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 100vh;     
 }
 
 h1 {
@@ -13,7 +16,102 @@ h1 {
     text-align: center;
 }
 
-/* Mensajes de alerta */
+/* Estilos para las pestañas de navegación */
+/* Estilos para la sección de Mis Pedidos */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;;
+}
+
+/* Barra de navegación entre pestañas */
+.nav-tabs {
+    border-bottom: 2px solid #c79b7b;
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-item .nav-link {
+    border: 1px solid #c79b7b;
+    border-radius: 5px 5px 0 0;
+    color: #5a3e2b;
+    font-weight: bold;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.nav-tabs .nav-item .nav-link:hover,
+.nav-tabs .nav-item .nav-link:focus {
+    background-color: #eae2da;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    background-color: #8d583d;
+    color: #fff;
+    border-color: #8d583d;
+}
+
+/* Contenido de la tabla de pedidos */
+.table-responsive {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Estilos para las tablas de Pedidos Normales y Pedidos Personalizados */
+.tab-content .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.tab-content .table th, 
+.tab-content .table td {
+    border: 1px solid #c79b7b;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: #5a3e2b;
+}
+
+.tab-content .table th {
+    background-color: #c79b7b;
+    color: #fff;
+    font-weight: bold;
+}
+
+.tab-content .table tbody tr:nth-child(even) {
+    background-color: #f8f4ee;
+}
+
+.tab-content .table tbody tr:hover {
+    background-color: #f2e5dc;
+}
+
+.tab-content .btn-primary {
+    background-color: #8d583d;
+    border: 1px solid #8d583d;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    color: #fff;
+}
+.tab-content.table th {
+    background-color: #c79b7b;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid #a87a5e; /* Destaca la división del encabezado */
+}
+.tab-content .btn-primary:hover {
+    background-color: #73452e;
+}
+
+/* Estilos de alerta */
 .alert {
     max-width: 600px;
     margin: 0 auto 20px;
@@ -22,71 +120,22 @@ h1 {
 }
 
 .alert-warning {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
-/* Contenedor de la tabla */
-.table-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-/* Tabla de pedidos */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.table th,
-.table td {
-    border: 1px solid #c79b7b;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    color: #5a3e2b;
-}
-
-.table th {
-    background-color: #8d583d;
-    color: #fff;
-    font-weight: bold;
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #f8f4ee;
-}
-
-.table tbody tr:hover {
-    background-color: #f2e5dc;
-}
-
-/* Estilo para los estados de los pedidos */
-.badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-/* Botón para generar PDF */
+/* Estilo de botones de acción */
 .btn-primary {
     background-color: #8d583d;
-    border: none;
+    border: 1px solid #8d583d;
     color: #fff;
     border-radius: 5px;
-    padding: 5px 10px;
-    transition: background 0.3s ease;
-    text-decoration: none;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
     background-color: #73452e;
 }
+

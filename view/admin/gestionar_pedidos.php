@@ -51,17 +51,16 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
 ?>
 
 <?php $pagina = 'gestPedidos'; ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header_admin.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
-<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
-<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Usuarios">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/pedidos.css">
 
 
 
 
 <center>
-<div class="container">
+<main class="main-content">
         <h1 class="my-4">Gestionar Pedidos</h1>
 
         <!-- Mensajes de éxito o error -->
@@ -164,7 +163,7 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
                 </table>
             </div>
         </div>
-    </div>
+    </main>
 </center>
 
 <!-- Modal para ver detalles del pedido -->
@@ -173,9 +172,6 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="verDetallesModalLabel">Detalles del Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body" id="detallesPedidoBody">
                 <!-- Los detalles del pedido se cargarán aquí dinámicamente -->

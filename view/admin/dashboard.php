@@ -40,7 +40,7 @@ if (isset($_GET['action'])) {
 </head>
 <body>
     <!-- Encabezado -->
-    <?php include ('../../view/partials/header.php'); ?>
+    <?php include ('../../view/partials/header_admin.php'); ?>
     
     <!-- Menú de Navegación -->
     <?php include ('../../view/partials/nav_admin.php'); ?>

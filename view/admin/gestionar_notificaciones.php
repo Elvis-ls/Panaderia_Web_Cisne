@@ -21,8 +21,7 @@ $controlador->manejarAcciones();
 $notificaciones = $controlador->mostrarNotificaciones();
 ?>
 
-
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header_admin.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
