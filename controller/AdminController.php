@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/UsuarioModel.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/model/PedidoAdminModel.php');
-
+require_once __DIR__ . '/../model/AdminModel.php';
 
 class AdminController {
     private $usuarioModel;
@@ -41,4 +41,5 @@ class AdminController {
         return $this->pedidoModel->actualizarEstadoPedido($id, $estado);
     }
 }
+
 ?>

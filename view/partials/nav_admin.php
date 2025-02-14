@@ -33,7 +33,7 @@
                 <li><a class="dropdown-item" href="/Panaderia_Web/view/admin/reportes_pedidos.php">Reportes de Pedidos</a></li>
             </ul>
         </div>
-        <a href="perfil.php" class="<?php echo ($pagina == 'perfil') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/perfilAdmin.php" class="<?php echo ($pagina == 'perfilAdm') ? 'active' : ''; ?>">
             <i class="fas fa-user"></i> Mi perfil
         </a>
         <a href="/Panaderia_Web/controller/LogoutController.php">
