@@ -42,7 +42,7 @@ if (isset($_GET['nombre'])) {
 
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
-<link rel="stylesheet" href="/Panaderia_Web/public/gest_Usuarios">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/barra.css">
 
 
 <?php $pagina = 'gestUsuarios'; ?>

@@ -11,6 +11,7 @@ if (!isset($_SESSION['id'])) {
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/config/conexion.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/controller/NotificacionController.php');
 
+
 $con = new mysqli($host, $usuario, $contraseña, $base_de_datos);
 if ($con->connect_error) {
     die("Conexión fallida: " . $con->connect_error);
@@ -25,6 +26,7 @@ $notificaciones = $controlador->mostrarNotificaciones();
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/crudAdmin.css">
 <center>
     <main class="main-content">
         

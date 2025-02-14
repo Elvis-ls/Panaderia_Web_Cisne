@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
-
+<link rel="stylesheet" href="/Panaderia_Web/public/css/crudAdmin.css">
 <main class="main-content">
     <h1>Galletería</h1>
     <?php if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'eliminado'): ?>
@@ -17,6 +17,8 @@
         </div>
     <?php endif; ?>
     <button class="btn btn-success" data-toggle="modal" data-target="#agregarModal">Agregar Producto</button>
+    <br>
+    <br>
     <div class="productos">
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $producto): ?>

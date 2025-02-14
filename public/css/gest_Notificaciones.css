@@ -57,3 +57,45 @@ table.table td button.btn-danger:hover {
     background-color: #732e1c;
 }
 
+/* Estilos para los botones de acciones (Editar y Eliminar) */
+.btn-warning, .btn-danger {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    margin: 0 5px; /* Espacio entre los botones */
+    width: 100px; /* Mismo tamaño para ambos botones */
+    text-align: center;
+}
+
+/* Estilo para el botón de Editar */
+.btn-warning {
+    background-color: #c79b7b; /* Marrón claro */
+    color: #f8f4ee; /* Texto claro */
+}
+
+.btn-warning:hover {
+    background-color: #a87c5f; /* Marrón claro más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el botón de Eliminar */
+.btn-danger {
+    background-color: #a52a2a; /* Rojo terroso */
+    color: #f8f4ee; /* Texto claro */
+}
+
+.btn-danger:hover {
+    background-color: #8b0000; /* Rojo más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los botones dentro de la tabla */
+.table td .btn {
+    display: inline-block; /* Asegura que los botones estén en línea */
+    vertical-align: middle; /* Alinea verticalmente los botones */
+}

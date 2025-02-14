@@ -1,0 +1,44 @@
+/* Estilos para el contenedor del buscador */
+.input-group {
+    max-width: 500px; /* Limita el ancho del buscador */
+    margin: 0 auto; /* Centra el buscador en la página */
+}
+
+/* Estilos para el campo de búsqueda */
+.input-group .form-control {
+    border: 2px solid #8d583d; /* Borde marrón oscuro */
+    border-radius: 20px 0 0 20px; /* Bordes redondeados solo a la izquierda */
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #5a3e2b; /* Color del texto */
+    background-color: #f8f4ee; /* Fondo claro */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group .form-control:focus {
+    border-color: #c79b7b; /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 8px rgba(199, 155, 123, 0.5); /* Sombra suave */
+    outline: none; /* Elimina el contorno predeterminado */
+}
+
+/* Estilos para el botón de búsqueda */
+.input-group-append .btn-primary {
+    border: 2px solid #8d583d; /* Borde marrón oscuro */
+    border-radius: 0 20px 20px 0; /* Bordes redondeados solo a la derecha */
+    background-color: #8d583d; /* Fondo marrón oscuro */
+    color: #f8f4ee; /* Texto claro */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group-append .btn-primary:hover {
+    background-color: #5a3e2b; /* Fondo marrón más oscuro al pasar el ratón */
+    border-color: #5a3e2b; /* Borde marrón más oscuro al pasar el ratón */
+}
+
+/* Estilos para el ícono del botón de búsqueda */
+.input-group-append .btn-primary i {
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
