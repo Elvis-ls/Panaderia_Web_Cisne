@@ -28,26 +28,5 @@ class RecomendacionesModel {
         $stmt->bind_param('ii', $usuario_id, $producto_id);
         $stmt->execute();
     }
-
-    public function actualizarRecomendaciones($usuario_id) {
-        // Eliminar recomendaciones existentes
-        $query = "DELETE FROM recomendados WHERE usuario_id = ?";
-        $stmt = $this->con->prepare($query);
-        $stmt->bind_param('i', $usuario_id);
-        $stmt->execute();
-
-        // Insertar nuevas recomendaciones
-        $query = "INSERT INTO recomendados (usuario_id, producto_id, num_pedidos)
-                  SELECT ?, dp.producto_id, COUNT(DISTINCT dp.pedido_id) as num_pedidos
-                  FROM detallespedidos dp
-                  JOIN pedidos pe ON dp.pedido_id = pe.id
-                  WHERE pe.usuario_id = ?
-                  GROUP BY dp.producto_id
-                  HAVING num_pedidos >= 2";
-        
-        $stmt = $this->con->prepare($query);
-        $stmt->bind_param('ii', $usuario_id, $usuario_id);
-        $stmt->execute();
-    }
 }
 ?>

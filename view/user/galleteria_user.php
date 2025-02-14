@@ -47,6 +47,8 @@ $productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría
     
     <!-- Carrito flotante -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/carrito.php'); ?>
+    <!-- Recomendaciones flotantes -->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/recomendaciones.php'); ?>
 
     <main class="main-content">
         <h1>Galletería</h1>
@@ -104,22 +106,20 @@ $productos = $productoModel->getProductosPorCategoria(3); // ID de la categoría
                 });
             });
         });
-    </script>
 
-    <script>
-    function incrementarCantidad(id, stock) {
-        var cantidadInput = document.getElementById('cantidad_' + id);
-        if (parseInt(cantidadInput.value) < stock) {
-            cantidadInput.value = parseInt(cantidadInput.value) + 1;
+        function incrementarCantidad(id, stock) {
+            var cantidadInput = document.getElementById('cantidad_' + id);
+            if (parseInt(cantidadInput.value) < stock) {
+                cantidadInput.value = parseInt(cantidadInput.value) + 1;
+            }
         }
-    }
 
-    function decrementarCantidad(id, stock) {
-        var cantidadInput = document.getElementById('cantidad_' + id);
-        if (cantidadInput.value > 1) {
-            cantidadInput.value = parseInt(cantidadInput.value) - 1;
+        function decrementarCantidad(id, stock) {
+            var cantidadInput = document.getElementById('cantidad_' + id);
+            if (cantidadInput.value > 1) {
+                cantidadInput.value = parseInt(cantidadInput.value) - 1;
+            }
         }
-    }
     </script>
 </body>
 </html>

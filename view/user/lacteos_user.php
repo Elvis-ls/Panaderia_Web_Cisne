@@ -47,6 +47,8 @@ $productos = $productoModel->getProductosPorCategoria(4); // ID de la categoría
     
     <!-- Carrito flotante -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/carrito.php'); ?>
+    <!-- Recomendaciones flotantes -->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/recomendaciones.php'); ?>
 
     <main class="main-content">
         <h1>Lácteos</h1>

@@ -47,6 +47,9 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
     <!-- Carrito flotante -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/carrito.php'); ?>
 
+    <!-- Recomendaciones flotantes -->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/recomendaciones.php'); ?>
+
     <main class="main-content">
         <h1 class="text-center flex-grow-1">Pastelería</h1>
         <div class="d-flex justify-content-between align-items-center mb-4">
