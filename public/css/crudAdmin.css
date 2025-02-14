@@ -1,0 +1,60 @@
+/* Estilos específicos para los botones de Editar, Eliminar y Agregar */
+.btn-success, .btn-primary, .btn-danger {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    color: #f8f4ee; /* Texto claro para contrastar con los fondos oscuros */
+}
+
+/* Estilo para el botón de Agregar */
+.btn-success {
+    background-color: #8d583d; /* Marrón oscuro */
+}
+
+.btn-success:hover {
+    background-color: #5a3e2b; /* Marrón más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el botón de Editar */
+.btn-primary {
+    background-color: #c79b7b; /* Marrón claro */
+}
+
+.btn-primary:hover {
+    background-color: #a87c5f; /* Marrón claro más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el botón de Eliminar */
+.btn-danger {
+    background-color: #a52a2a; /* Rojo terroso */
+}
+
+.btn-danger:hover {
+    background-color: #8b0000; /* Rojo más oscuro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos adicionales para los botones dentro de la sección de productos */
+.productos .btn {
+    margin: 5px;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+/* Estilo para los botones cuando están en estado activo o enfocado */
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(141, 88, 61, 0.5); /* Sombra con tono marrón */
+}
+
+/* Estilo para los botones dentro de los modales */
+.modal .btn {
+    margin-top: 10px;
+}

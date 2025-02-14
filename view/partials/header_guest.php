@@ -10,7 +10,7 @@
             <div class="col-md-4 text-center text-md-start">
                 <div class="logo">
                     <img src="http://localhost/Panaderia_Web/public/images/logo.png" alt="Logo Panadería" class="img-fluid" style="max-width: 150px;">
-                    <h1 class="d-inline-block align-middle ms-3">Panadería Don Juan</h1>
+                    <h1 class="d-inline-block align-middle ms-3">El Cisne Panadería y Pastelería</h1>
                 </div>
             </div>
         </div>

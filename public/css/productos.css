@@ -4,7 +4,9 @@
     gap: 20px;
     justify-content: center;
 }
-
+.main-content{
+    min-height: 70vh;   
+ }
 .producto {
     background-color: #fff;
     border: 1px solid #ddd;

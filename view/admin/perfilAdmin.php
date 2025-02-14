@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$pagina = 'perfil';
+$pagina = 'perfilAdm';
 
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['id'])) {
@@ -26,12 +26,14 @@ $usuario = $usuarioModel->obtenerUsuario($usuario_id);
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/perfil.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 </head>
 <body>
-    <?php include ('../partials/header.php'); ?>
-    <?php include ('../partials/nav_admin.php'); ?>
-
-    <main class="main-content">
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header_admin.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
+    <center>
+        <div class="cont">
+        <main class="main-content">
         <h1>Mi Perfil</h1>
         
         <form id="perfilForm" action="../../controller/UserController.php" method="POST">
@@ -58,6 +60,9 @@ $usuario = $usuarioModel->obtenerUsuario($usuario_id);
             <button type="button" class="btn btn-primary save-button" id="saveButton" onclick="showConfirmModal()">Guardar Cambios</button>
         </form>
     </main>
+        </div>
+    </center>
+   
     
     <?php include ('../partials/footer.php'); ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

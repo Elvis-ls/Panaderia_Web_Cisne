@@ -42,72 +42,73 @@ if (isset($_GET['nombre'])) {
 
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
-<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Usuarios">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/barra.css">
 
 
 <?php $pagina = 'gestUsuarios'; ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header_admin.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
-
 <center>
-    <div class="main-content">
+
+<div class="main-content">
         
-            <h1 class="my-4">Gestionar Usuarios</h1>
+        <h1 class="my-4">Gestionar Usuarios</h1>
 
-            <!-- Barra de búsqueda -->
-            <form action="gestionar_usuarios.php" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Buscar usuario por nombre">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Buscar</button>
-                    </div>
+        <!-- Barra de búsqueda -->
+        <form action="gestionar_usuarios.php" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="nombre" class="form-control" placeholder="Buscar usuario por nombre">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
-            </form>
+            </div>
+        </form>
 
-            <!-- Mensajes de éxito o error -->
-            <?php if (isset($_SESSION['mensaje'])): ?>
-                <div class="alert alert-success"><?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></div>
-            <?php endif; ?>
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-            <?php endif; ?>
+        <!-- Mensajes de éxito o error -->
+        <?php if (isset($_SESSION['mensaje'])): ?>
+            <div class="alert alert-success"><?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+        <?php endif; ?>
 
-            <!-- Tabla de usuarios -->
-            <!-- Tabla de usuarios -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($usuarios)): ?>
-                        <?php foreach ($usuarios as $usuario): ?>
-                            <tr>
-                                <td><?php echo $usuario['nombre']; ?></td>
-                                <td><?php echo $usuario['correo']; ?></td>
-                                <td><?php echo $usuario['telefono']; ?></td>
-                                <td><?php echo $usuario['direccion']; ?></td>
-                                <td>
-                                    <!-- Botón para abrir el modal de confirmación -->
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="<?php echo $usuario['id']; ?>">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
+        <!-- Tabla de usuarios -->
+        <!-- Tabla de usuarios -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($usuarios)): ?>
+                    <?php foreach ($usuarios as $usuario): ?>
                         <tr>
-                            <td colspan="5" class="text-center">No hay usuarios registrados.</td>
+                            <td><?php echo $usuario['nombre']; ?></td>
+                            <td><?php echo $usuario['correo']; ?></td>
+                            <td><?php echo $usuario['telefono']; ?></td>
+                            <td><?php echo $usuario['direccion']; ?></td>
+                            <td>
+                                <!-- Botón para abrir el modal de confirmación -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="<?php echo $usuario['id']; ?>">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </td>
                         </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-    </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="text-center">No hay usuarios registrados.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+</div>
+   
 </center>
 <!-- Modal de confirmación de eliminación -->
 <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">

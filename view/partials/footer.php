@@ -1,5 +1,5 @@
 <footer>
-    <p>&copy; 2025 Panandería Don Juan. Todos los derechos reservados.</p>
+    <p>&copy; 2025 El Cisne Panadería y Pastelería. Todos los derechos reservados.</p>
     <div class="social-icons">
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
