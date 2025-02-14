@@ -20,7 +20,7 @@
         <a href="/Panaderia_Web/view/admin/gestionar_usuarios.php" class="<?php echo ($pagina == 'gestUsuarios') ? 'active' : ''; ?>">
             <i class="fas fa-users"></i> Gestionar Usuarios
         </a>
-        <a href="/Panaderia_Web/view/admin/gestionar_notificaciones.php" class="<?php echo ($pagina == 'notificaciones') ? 'active' : ''; ?>">
+        <a href="/Panaderia_Web/view/admin/gestionar_notificaciones.php" class="<?php echo ($pagina == 'gestNotificaciones') ? 'active' : ''; ?>">
             <i class="fas fa-bell"></i> Generar Notificaciones
         </a>
         <div class="dropdown">

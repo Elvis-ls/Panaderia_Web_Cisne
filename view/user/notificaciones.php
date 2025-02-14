@@ -30,43 +30,47 @@ $notificaciones = $controlador->mostrarNotificaciones();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="/Panaderia_Web/public/css/notificaciones.css">
+
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
+    
+
 </head>
 <body>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_user.php'); ?>
-
-    <main class="main-content">
-        <div class="notificaciones-container">
-            <h1 class="text-center mb-4">Notificaciones</h1>
-            <?php if (!empty($notificaciones)): ?>
-                <?php foreach ($notificaciones as $notificacion): ?>
-                    <div class="notificacion-box">
-                        <!-- Mensaje -->
-                        <div class="notificacion-mensaje">
-                            <p><?php echo $notificacion['mensaje']; ?></p>
-                            <div class="notificacion-fecha">
-                                <?php echo $notificacion['fecha_creacion']; ?>
+    <center>
+        <main class="main-content">
+            
+                <h1 class="text-center mb-4">Notificaciones</h1>
+                <?php if (!empty($notificaciones)): ?>
+                    <?php foreach ($notificaciones as $notificacion): ?>
+                        <div class="notificacion-box">
+                            <!-- Mensaje -->
+                            <div class="notificacion-mensaje">
+                                <p><?php echo $notificacion['mensaje']; ?></p>
+                                <div class="notificacion-fecha">
+                                    <?php echo $notificacion['fecha_creacion']; ?>
+                                </div>
                             </div>
+                            <!-- Imagen -->
+                            <?php if ($notificacion['imagen']): ?>
+                                <div class="notificacion-imagen">
+                                    <img src="<?php echo $notificacion['imagen']; ?>" alt="Imagen de notificación">
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <!-- Imagen -->
-                        <?php if ($notificacion['imagen']): ?>
-                            <div class="notificacion-imagen">
-                                <img src="<?php echo $notificacion['imagen']; ?>" alt="Imagen de notificación">
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="no-notificaciones">No hay notificaciones disponibles.</p>
-            <?php endif; ?>
-        </div>
-    </main>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="no-notificaciones">No hay notificaciones disponibles.</p>
+                <?php endif; ?>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
-
+        </main>
+    </center>
+    
     <!-- Bootstrap JS y dependencias -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>
 </html>

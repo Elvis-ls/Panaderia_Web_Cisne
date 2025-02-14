@@ -54,11 +54,14 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/header.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/nav_admin.php'); ?>
 <link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
-<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Pedidos.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Notificaciones.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/gest_Usuarios">
 
 
-<main class="main-content">
-    <div class="container">
+
+
+<center>
+<div class="container">
         <h1 class="my-4">Gestionar Pedidos</h1>
 
         <!-- Mensajes de éxito o error -->
@@ -133,7 +136,6 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
                             <th>Descripción</th>
                             <th>Estado</th>
                             <th>Total</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -151,11 +153,6 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
                                     </button>
                                     </td>
                                     <td>$<?php echo number_format($pedido_personalizado['total'], 2); ?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#verDetallesModal" data-id="<?php echo $pedido_personalizado['id']; ?>">
-                                            <i class="fas fa-eye"></i> Ver
-                                        </button>
-                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
@@ -168,7 +165,7 @@ $pedidos_personalizados = $adminController->getPedidosPersonalizados();
             </div>
         </div>
     </div>
-</main>
+</center>
 
 <!-- Modal para ver detalles del pedido -->
 <div class="modal fade" id="verDetallesModal" tabindex="-1" role="dialog" aria-labelledby="verDetallesModalLabel" aria-hidden="true">

@@ -1,29 +1,13 @@
-/* Estilos generales */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f4ee;
-    margin: 0;
-    padding: 0;
-    color: #5a3e2b;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .main-content {
-    padding: 20px;
-    flex: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
+    text-align: center;
 
-/* Estilos para el contenedor de notificaciones */
-.notificaciones-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    min-height: 100vh;     
+     
 }
 
 /* Estilos para cada notificación */
@@ -52,19 +36,17 @@ body {
 
 /* Estilos para la imagen */
 .notificacion-imagen {
-    width: 150px;
+    flex: 0 0 150px; /* Tamaño fijo, no crece ni se encoge */
     height: 150px;
     border-radius: 10px;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .notificacion-imagen img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
 }
-
 /* Estilos para la fecha */
 .notificacion-fecha {
     font-size: 0.9rem;
@@ -79,3 +61,4 @@ body {
     color: #8d583d;
     margin-top: 50px;
 }
+
