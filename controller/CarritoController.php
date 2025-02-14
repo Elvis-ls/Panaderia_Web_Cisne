@@ -21,6 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
+    if (isset($_POST['accion']) && $_POST['accion'] == 'actualizar') {
+        $carrito_id = $_POST['carrito_id'];
+        $cantidad = $_POST['cantidad'];
+        
+        // Obtener el producto_id a partir del carrito_id
+        $producto = $carritoModel->obtenerProductoPorCarritoId($carrito_id);
+        $producto_id = $producto['producto_id'];
+    
+        $carritoModel->actualizarCantidadProducto($cantidad, $usuario_id, $producto_id);
+        
+        // Obtener el nuevo total del pedido
+        $productos_carrito = $carritoModel->obtenerProductosEnCarrito($usuario_id);
+        $total_pedido = array_sum(array_map(function($producto) {
+            return $producto['precio_unitario'] * $producto['cantidad'];
+        }, $productos_carrito));
+    
+        // Devolver la respuesta JSON
+        echo json_encode(['total_pedido' => number_format($total_pedido, 2)]);
+        exit;
+    }
+
+
     if (isset($_POST['accion']) && $_POST['accion'] == 'agregar') {
         $producto_id = $_POST['producto_id'];
         $cantidad = $_POST['cantidad'];

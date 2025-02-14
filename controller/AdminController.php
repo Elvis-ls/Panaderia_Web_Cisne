@@ -24,9 +24,16 @@ class AdminController {
         return $this->usuarioModel->eliminarUsuario($id);
     }
     public function getPedidos() {
-        return $this->pedidoModel->getPedidos();
+        return $this->pedidoModel->getPedidosNormales();
     }
 
+    public function obtenerDetallesPedido($id) {
+        return $this->pedidoModel->obtenerDetallesPedido($id);
+    }
+
+    public function getpedidosPersonalizados() {
+        return $this->pedidoModel->getPedidosPersonalizados();
+    }
     /**
      * Elimina un pedido.
      */
@@ -37,8 +44,8 @@ class AdminController {
     /**
      * Actualiza el estado de un pedido.
      */
-    public function actualizarEstadoPedido($id, $estado) {
-        return $this->pedidoModel->actualizarEstadoPedido($id, $estado);
+    public function actualizarEstadoPedido($id, $estado, $tipo) {
+        return $this->pedidoModel->actualizarEstadoPedido($id, $estado, $tipo);
     }
 }
 

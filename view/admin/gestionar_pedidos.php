@@ -34,7 +34,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'eliminarPedido' && isset($_GET
 if (isset($_POST['actualizarEstado'])) {
     $id = intval($_POST['id']);
     $estado = $_POST['estado'];
-    if ($adminController->actualizarEstadoPedido($id, $estado)) {
+    $tipo = $_POST['tipo_pedido']; // Obtener el tipo de pedido
+
+    if ($adminController->actualizarEstadoPedido($id, $estado, $tipo)) {
         $_SESSION['mensaje'] = "Estado del pedido actualizado correctamente.";
     } else {
         $_SESSION['error'] = "Error al actualizar el estado del pedido.";
@@ -44,7 +46,8 @@ if (isset($_POST['actualizarEstado'])) {
 }
 
 // Obtener los pedidos
-$pedidos = $adminController->getPedidos();
+$pedidos_normales = $adminController->getPedidos();
+$pedidos_personalizados = $adminController->getPedidosPersonalizados();
 ?>
 
 <?php $pagina = 'gestPedidos'; ?>
@@ -66,79 +69,142 @@ $pedidos = $adminController->getPedidos();
             <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
         <?php endif; ?>
 
-        <!-- Tabla de pedidos -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID Pedido</th>
-                    <th>Usuario</th>
-                    <th>Fecha del Pedido</th>
-                    <th>Estado</th>
-                    <th>Total</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($pedidos)): ?>
-                    <?php foreach ($pedidos as $pedido): ?>
+        <!-- Pestañas de Bootstrap -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pedidos-normales-tab" data-toggle="tab" href="#pedidos-normales" role="tab" aria-controls="pedidos-normales" aria-selected="true">Pedidos Normales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pedidos-personalizados-tab" data-toggle="tab" href="#pedidos-personalizados" role="tab" aria-controls="pedidos-personalizados" aria-selected="false">Pedidos Personalizados</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- Pestaña de Pedidos Normales -->
+            <div class="tab-pane fade show active" id="pedidos-normales" role="tabpanel" aria-labelledby="pedidos-normales-tab">
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td><?php echo $pedido['id']; ?></td>
-                            <td><?php echo $pedido['nombre_usuario']; ?></td>
-                            <td><?php echo $pedido['fecha_pedido']; ?></td>
-                            <td>
-                                <span class="estado-pedido"><?php echo ucfirst($pedido['estado']); ?></span>
-                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"       data-target="#actualizarPedidoModal" data-id="<?php echo $pedido['id'] ; ?>">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                            <td><?php echo $pedido['total']; ?></td>
-                            <td>
-                                <!-- Botón para eliminar el pedido -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="<?php echo $pedido['id']; ?>">
-                                    <i class="fas fa-trash"></i>  Eliminar
-                                </button>
-                            </td>
+                            <th>ID Pedido</th>
+                            <th>Usuario</th>
+                            <th>Fecha del Pedido</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
                         </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6" class="text-center">No hay pedidos registrados.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($pedidos_normales)): ?>
+                            <?php foreach ($pedidos_normales as $pedido): ?>
+                                <tr>
+                                    <td><?php echo $pedido['id']; ?></td>
+                                    <td><?php echo $pedido['nombre_usuario']; ?></td>
+                                    <td><?php echo $pedido['fecha_pedido']; ?></td>
+                                    <td>
+                                        <span class="estado-pedido"><?php echo ucfirst($pedido['estado']); ?></span>
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#actualizarPedidoModal" data-id="<?php echo $pedido['id']; ?>" data-tipo="normal">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>$<?php echo number_format($pedido['total'], 2); ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#verDetallesModal" data-id="<?php echo $pedido['id']; ?>">
+                                            <i class="fas fa-eye"></i> Ver
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" class="text-center">No hay pedidos normales registrados.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pestaña de Pedidos Personalizados -->
+            <div class="tab-pane fade" id="pedidos-personalizados" role="tabpanel" aria-labelledby="pedidos-personalizados-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido Personalizado</th>
+                            <th>Usuario</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($pedidos_personalizados)): ?>
+                            <?php foreach ($pedidos_personalizados as $pedido_personalizado): ?>
+                                <tr>
+                                    <td><?php echo $pedido_personalizado['id']; ?></td>
+                                    <td><?php echo $pedido_personalizado['nombre_usuario']; ?></td>
+                                    <td><?php echo $pedido_personalizado['fecha_entrega']; ?></td>
+                                    <td><?php echo nl2br($pedido_personalizado['descripcion']); ?></td>
+                                    <td>
+                                        <span class="estado-pedido"><?php echo ucfirst($pedido_personalizado['estado']); ?></span>
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#actualizarPedidoModal" data-id="<?php echo $pedido_personalizado['id']; ?>" data-tipo="personalizado">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    </td>
+                                    <td>$<?php echo number_format($pedido_personalizado['total'], 2); ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#verDetallesModal" data-id="<?php echo $pedido_personalizado['id']; ?>">
+                                            <i class="fas fa-eye"></i> Ver
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="7" class="text-center">No hay pedidos personalizados registrados.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 
-
-<!-- Modal de confirmación de eliminación -->
-<div class="modal fade" id="confirmarEliminarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Modal para ver detalles del pedido -->
+<div class="modal fade" id="verDetallesModal" tabindex="-1" role="dialog" aria-labelledby="verDetallesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
+                <h5 class="modal-title" id="verDetallesModalLabel">Detalles del Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este pedido?
+            <div class="modal-body" id="detallesPedidoBody">
+                <!-- Los detalles del pedido se cargarán aquí dinámicamente -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <a id="confirmarEliminarBtn" href="#" class="btn btn-danger">Eliminar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal para actualizar el pedido -->
 <div class="modal fade" id="actualizarPedidoModal" tabindex="-1" role="dialog" aria-labelledby="actualizarPedidoModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="actualizarPedidoModalLabel">Actualizar Pedido</h5>
+                <h5 class="modal-title" id="actualizarPedidoModalLabel">Actualizar Estado del Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="gestionar_pedidos.php" method="POST">
                     <input type="hidden" name="id" id="pedidoId">
+                    <input type="hidden" name="tipo_pedido" id="tipoPedido"> <!-- Campo oculto para el tipo de pedido -->
                     <div class="form-group">
                         <label for="estado">Estado del Pedido</label>
                         <select name="estado" id="estado" class="form-control">
@@ -147,7 +213,7 @@ $pedidos = $adminController->getPedidos();
                         </select>
                     </div>
                     <br>
-                    <div class="text-center"> <!-- Centrar el botón -->
+                    <div class="text-center">
                         <button type="submit" name="actualizarEstado" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </form>
@@ -159,38 +225,65 @@ $pedidos = $adminController->getPedidos();
     </div>
 </div>
 
+
+
 <!-- Incluir jQuery antes de Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Script para manejar el modal de confirmación -->
 <script>
     $(document).ready(function() {
-        var idPedidoAEliminar; // Variable para almacenar el ID del pedido a eliminar
-
-        // Cuando se abre el modal, capturar el ID del pedido
-        $('#confirmarEliminarModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Botón que activó el modal
-            idPedidoAEliminar = button.data('id'); // Extraer el ID del pedido
-            var eliminarBtn = $('#confirmarEliminarBtn'); // Botón de confirmación en el modal
-
-            // Actualizar el enlace de eliminación con el ID del pedido
-            eliminarBtn.attr('href', 'gestionar_pedidos.php?action=eliminarPedido&id=' + idPedidoAEliminar);
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        // Cuando se abre el modal de actualización, capturar el ID del pedido
+        // Cuando se abre el modal de actualización, capturar el ID y el tipo de pedido
         $('#actualizarPedidoModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Botón que activó el modal
             var idPedido = button.data('id'); // Extraer el ID del pedido
+            var tipoPedido = button.data('tipo'); // Extraer el tipo de pedido (normal o personalizado)
             var modal = $(this);
-            modal.find('.modal-body #pedidoId').val(idPedido); // Asignar el ID al campo oculto
+
+            // Asignar el ID y el tipo de pedido a los campos ocultos
+            modal.find('.modal-body #pedidoId').val(idPedido);
+            modal.find('.modal-body #tipoPedido').val(tipoPedido);
         });
     });
 </script>
+<!-- Script para cargar los detalles del pedido en el modal -->
+<script>
+    $(document).ready(function() {
+        $('#verDetallesModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Botón que activó el modal
+            var idPedido = button.data('id'); // Extraer el ID del pedido
+            var modal = $(this);
+
+            // Cargar los detalles del pedido mediante AJAX
+            $.ajax({
+                url: 'obtener_detalles_pedido.php', // Archivo que obtiene los detalles del pedido
+                type: 'GET',
+                data: { id: idPedido },
+                success: function(response) {
+                    modal.find('.modal-body').html(response); // Insertar la respuesta en el modal
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Cuando se abre el modal de actualización, capturar el ID y el tipo de pedido
+        $('#actualizarPedidoModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Botón que activó el modal
+            var idPedido = button.data('id'); // Extraer el ID del pedido
+            var tipoPedido = button.data('tipo'); // Extraer el tipo de pedido (normal o personalizado)
+            var modal = $(this);
+
+            // Asignar el ID y el tipo de pedido a los campos ocultos
+            modal.find('.modal-body #pedidoId').val(idPedido);
+            modal.find('.modal-body #tipoPedido').val(tipoPedido);
+        });
+    });
+</script>
+
+
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/partials/footer.php'); ?>

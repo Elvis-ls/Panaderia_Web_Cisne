@@ -1,5 +1,14 @@
-<?php $pagina = 'inicio_user'; 
-session_start();?>
+<?php
+session_start();
+require_once __DIR__ . '/../../model/carrito_functions.php';
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['id'])) {
+    header("Location: ../../view/guest/login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,10 +19,9 @@ session_start();?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Panaderia_Web/public/css/carrito.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-
 </head>
 <body>
     <!-- Encabezado -->
@@ -21,6 +29,9 @@ session_start();?>
     
     <!-- Menú de Navegación -->
     <?php include ('../partials/nav.php'); ?>
+    
+    <!-- Carrito flotante -->
+    <?php include ('../partials/carrito.php'); ?>
     
     <main class="main-content">
         <h1>Bienvenidos a nuestra Panadería</h1>
@@ -78,11 +89,36 @@ session_start();?>
                 <a href="lacteos_user.php">Ver más</a>
             </div>
         </div>
-    </main>   
+    </main>
+
     <!-- Pie de página -->
     <?php include ('../partials/footer.php'); ?>
-        <!-- Incluir los scripts de Bootstrap -->
+
+    <!-- Incluir los scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/Panaderia_Web/public/js/carrito.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.update-quantity-form input[name="cantidad"]').on('change', function() {
+            var form = $(this).closest('form');
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    // Actualizar el total del pedido y otros elementos del carrito si es necesario
+                    $('#total-pedido').text(response.total_pedido);
+                    // Aquí puedes actualizar otros elementos del carrito si es necesario
+                },
+                error: function() {
+                    alert('Error al actualizar la cantidad del producto.');
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

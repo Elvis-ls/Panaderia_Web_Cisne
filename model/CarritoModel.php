@@ -36,7 +36,7 @@ class CarritoModel {
     }
 
     public function actualizarCantidadProducto($cantidad, $usuario_id, $producto_id) {
-        $query = "UPDATE carrito SET cantidad = cantidad + ? WHERE usuario_id = ? AND producto_id = ?";
+        $query = "UPDATE carrito SET cantidad = ? WHERE usuario_id = ? AND producto_id = ?";
         $stmt = $this->con->prepare($query);
         $stmt->bind_param("iii", $cantidad, $usuario_id, $producto_id);
         $stmt->execute();
@@ -57,8 +57,12 @@ class CarritoModel {
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $productos = [];
+        while ($row = $result->fetch_assoc()) {
+            $productos[] = $row;
+        }
         $stmt->close();
-        return $result;
+        return $productos;
     }
 
     public function actualizarStockProducto($producto_id, $cantidad) {
@@ -75,6 +79,17 @@ class CarritoModel {
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
         $stmt->close();
+    }
+
+    public function obtenerProductoPorCarritoId($carrito_id) {
+        $query = "SELECT producto_id FROM carrito WHERE id = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $carrito_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $producto = $result->fetch_assoc();
+        $stmt->close();
+        return $producto;
     }
 }
 ?>
