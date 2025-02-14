@@ -28,6 +28,7 @@
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query" >
                         <button class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
+                    <p class="badge text-white ms-3" style="font-size: 1.2em; background-color: #d4a373;">Usuario</p>
                 </div>
             </div>
         </div>
@@ -38,3 +39,14 @@
         </div>
     </div>
 </header>
+
+<style>
+.badge {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #d4a373; /* Color marrón claro */
+    color: #ffffff; /* Texto blanco */
+}
+</style>

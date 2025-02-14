@@ -85,11 +85,11 @@ class PDF extends FPDF {
         $this->Ln(10);
 
         // Agregar más detalles si es necesario
-        if (!empty($pedido_personalizado['imagen_referencia'])) {
+        if (!empty($pedido_personalizado['imagen_path'])) {
             $this->SetFont('Arial','B',12);
             $this->Cell(0,10,'Imagen de Referencia',0,1);
             $this->Ln(5);
-            $this->Image($_SERVER['DOCUMENT_ROOT'] . $pedido_personalizado['imagen_referencia'], 10, $this->GetY(), 50);
+            $this->Image(__DIR__ . '/../' . $pedido_personalizado['imagen_path'], 10, $this->GetY(), 50);
             $this->Ln(60); // Ajustar el salto de línea según el tamaño de la imagen
         }
     }
