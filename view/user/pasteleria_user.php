@@ -24,6 +24,7 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
 <!-- Incluir el nuevo archivo CSS -->
 <link rel="stylesheet" href="/Panaderia_Web/public/css/productos.css">
 <link rel="stylesheet" href="/Panaderia_Web/public/css/modal.css">
+<link rel="stylesheet" href="/Panaderia_Web/public/css/style.css">
 
 <main class="main-content">
 <h1 class="text-center flex-grow-1">Pastelería</h1>
@@ -70,15 +71,6 @@ $productos = $productoModel->getProductosPorCategoria(2); // ID de la categoría
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/Panaderia_Web/view/user/pedido_personalizado.php'); ?>
 </div>
 
-<<<<<<< HEAD
-<!-- Elimina la inclusión de Bootstrap CSS -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-
-<!-- Incluye solo el JavaScript de Bootstrap para el modal -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-=======
 <script>
 function incrementarCantidad(id, stock) {
     var cantidadInput = document.getElementById('cantidad_' + id);
@@ -97,4 +89,3 @@ function decrementarCantidad(id, stock) {
 
 <!-- Incluir el archivo JavaScript para la ventana modal -->
 <script src="/Panaderia_Web/public/js/modal.js"></script>
->>>>>>> abca5b0bf244714d987389b3021b27d11626222c
