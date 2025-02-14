@@ -1,0 +1,159 @@
+/* Estilo del icono del carrito */
+.cart-icon {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #212529;
+    color: #fff;
+    padding: 12px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    transition: background 0.3s ease;
+}
+
+.cart-icon:hover {
+    background-color: #343a40;
+}
+
+/* Estilo del contenedor desplegable del carrito */
+.cart-dropdown {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 320px;
+    max-height: 450px;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/* Estilo de los elementos del carrito */
+.cart-dropdown .cart-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-dropdown .cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Estilo de la imagen del producto */
+.cart-dropdown .cart-item img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de la información del producto */
+.cart-dropdown .cart-item .item-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cart-dropdown .cart-item .item-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.cart-dropdown .cart-item .item-price {
+    font-weight: 600;
+    color: #218838;
+}
+
+/* Estilo de la cantidad del producto */
+.cart-dropdown .cart-item .item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-dropdown .cart-item .item-quantity input {
+    width: 45px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+/* Estilo del botón para eliminar el producto */
+.cart-dropdown .cart-item .remove-item {
+    cursor: pointer;
+    font-size: 18px;
+    color: #dc3545;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+}
+
+.cart-dropdown .cart-item .remove-item:hover {
+    color: #a71d2a;
+}
+
+/* Estilo del total del pedido */
+.cart-dropdown .total-pedido {
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #f1f3f5;
+    border-top: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Estilo del botón para realizar el pedido */
+.cart-dropdown .realizar-pedido {
+    padding: 12px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.cart-dropdown .realizar-pedido button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.cart-dropdown .realizar-pedido button:hover {
+    background-color: #218838;
+}
+
+/* Estilo del botón para cerrar el carrito */
+.cart-dropdown .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #444;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+}
+
+.cart-dropdown .close-btn:hover {
+    color: #000;
+}
